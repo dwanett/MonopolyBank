@@ -22,7 +22,7 @@ import monopoly.monopoly_bank.logic.player.Player;
 import monopoly.monopoly_bank.logic.titledeeds.TitleDeed;
 
 
-public class Swap{
+public class Swap {
 
     private MonopolyBank bank;
 
@@ -96,8 +96,8 @@ public class Swap{
             Player selectedRightPlayer = this.tableRight.getSelectionModel().getSelectedItem();
             List<TitleDeed> leftTitleDeads = new ArrayList<>();
             List<TitleDeed> rightTitleDeads = new ArrayList<>();
-            int moneyLeft = takeInfoLeftPlayer(selectedLeftPlayer, leftTitleDeads);
-            int moneyRight = takeInfoRightPlayer(selectedRightPlayer, rightTitleDeads);
+            int moneyLeft = takeInfo(selectedLeftPlayer, leftTitleDeads, this.listLeft, this.moneyLeft);
+            int moneyRight = takeInfo(selectedRightPlayer, rightTitleDeads, this.listRight, this.moneyRight);
             if (moneyLeft != -1 && moneyRight != -1) {
                 bank.swap(selectedLeftPlayer, selectedRightPlayer, leftTitleDeads, rightTitleDeads, moneyLeft, moneyRight);
                 this.stage.close();
@@ -105,10 +105,10 @@ public class Swap{
         });
     }
 
-    public ObservableList<ImageView> newListImagesView(Player selectedPlayer){
+    public ObservableList<ImageView> newListImagesView(Player selectedPlayer) {
         ObservableList<ImageView> newList = FXCollections.observableArrayList();
         ObservableList<ImageView> oldList = selectedPlayer.getImageViewsTitleDeadsProperty();
-        for (ImageView elem : oldList){
+        for (ImageView elem : oldList) {
             ImageView newImages = new ImageView(elem.getImage());
             newImages.setFitHeight(elem.getImage().getHeight() / 5);
             newImages.setFitWidth(elem.getImage().getWidth() / 5);
@@ -117,37 +117,26 @@ public class Swap{
         return newList;
     }
 
-    public int takeInfoLeftPlayer(Player player, List<TitleDeed> titleDeads) {
+    public int takeInfo(Player player, List<TitleDeed> titleDeads, ListView<ImageView> list, TextField moneyText) {
         if (player != null) {
-            ObservableList<ImageView> selectedImage = this.listLeft.getSelectionModel().getSelectedItems();
-            String moneyString = this.moneyLeft.getText();
+            ObservableList<ImageView> selectedImage = list.getSelectionModel().getSelectedItems();
+            String moneyString = moneyText.getText();
             if (moneyString.matches("\\d+")) {
-                int money = Integer.parseInt(moneyString);
-                for (ImageView imageView : selectedImage) {
-                    titleDeads.add(player.findTitleDeadForImageFront(imageView.getImage()));
-                }
-                return money;
+                long money = Integer.parseInt(moneyString);
+                if (money < Integer.MAX_VALUE) {
+                    for (ImageView imageView : selectedImage) {
+                        TitleDeed cur = player.findTitleDeadForImageFront(imageView.getImage());
+                        if (cur == null)
+                            cur = player.findTitleDeadForImageBack(imageView.getImage());
+                        titleDeads.add(cur);
+                    }
+                    return (int) money;
+                } else
+                    this.info.setText("Слишком большое число!");
             } else
                 this.info.setText("Деньги должны быть числом");
         } else
-            this.info.setText("Выберите левого игрока");
-        return -1;
-    }
-
-    public int takeInfoRightPlayer(Player player, List<TitleDeed> titleDeads){
-        if (player != null) {
-            ObservableList<ImageView> selectedImage = this.listRight.getSelectionModel().getSelectedItems();
-            String moneyString = this.moneyRight.getText();
-            if (moneyString.matches("\\d+")) {
-                int money = Integer.parseInt(moneyString);
-                for (ImageView imageView : selectedImage) {
-                    titleDeads.add(player.findTitleDeadForImageFront(imageView.getImage()));
-                }
-                return money;
-            } else
-                this.info.setText("Деньги должны быть числом");
-        } else
-            this.info.setText("Выберите правого игрока");
+            this.info.setText("Выберите игрока/ов");
         return -1;
     }
 }

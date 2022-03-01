@@ -106,12 +106,16 @@ public class Player {
             if (!elem.isMortgaged()){
                 elem.setMortgaged(true);
                 this.updateImageViewsTitleDeads();
-                this.money.set(this.money.get() + elem.getPricePledge());
+                this.addMoney(elem.getPricePledge());
                 System.out.println("You mortgaged street");
             }
-            else
-                System.err.println("Error: This street is mortgaged");
+            else {
+                elem.setMortgaged(false);
+                this.updateImageViewsTitleDeads();
+                this.takeMoney(elem.getPricePledge() + (int)(elem.getPricePledge() * 0.1));
+                System.out.println("You buyback street");
             }
+        }
         else
             System.err.println("Error: You not have this street");
     }
@@ -151,7 +155,7 @@ public class Player {
     }
 
     @Override
-        public String toString(){
+    public String toString(){
             return this.getName().toString();
     }
 

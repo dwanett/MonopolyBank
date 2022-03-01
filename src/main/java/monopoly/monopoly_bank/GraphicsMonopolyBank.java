@@ -148,9 +148,9 @@ public class GraphicsMonopolyBank {
                     List<ImageView> selectedImagesNewList = new ArrayList<>(selectedImages);
                     for(ImageView imageView : selectedImagesNewList) {
                         TitleDeed findTitleDead = selectedPlayer.findTitleDeadForImageFront(imageView.getImage());
-                        if(findTitleDead != null) {
-                            selectedPlayer.mortgageTitleDeed(findTitleDead);
-                        }
+                        if (findTitleDead == null)
+                            findTitleDead = selectedPlayer.findTitleDeadForImageBack(imageView.getImage());
+                        selectedPlayer.mortgageTitleDeed(findTitleDead);
                     }
                 }
                 else {
@@ -188,7 +188,7 @@ public class GraphicsMonopolyBank {
                 InputStream iconStream = getClass().getResourceAsStream("logo.jpg");
                 Image image = new Image(iconStream);
                 stage.getIcons().add(image);
-                stage.setTitle("Monopoly bank swap");
+                stage.setTitle("Обмен");
                 stage.setScene(scene);
                 stage.setResizable(false);
                 stage.show();

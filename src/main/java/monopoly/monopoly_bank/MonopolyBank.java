@@ -111,10 +111,6 @@ public class MonopolyBank {
             setPlayerWralks(0);
     }
 
-    //public void auction() {
-    //
-    //}
-
     public void swap(Player leftPlayer, Player rightPlayer, List<TitleDeed> leftTitleDeads, List<TitleDeed> rightTitleDeads, int moneyLeft, int moneyRight){
         if (leftPlayer != rightPlayer) {
             for (TitleDeed elem : leftTitleDeads) {
