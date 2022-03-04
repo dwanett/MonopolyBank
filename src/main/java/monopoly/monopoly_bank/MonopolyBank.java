@@ -111,23 +111,25 @@ public class MonopolyBank {
             setPlayerWralks(0);
     }
 
-    public void swap(Player leftPlayer, Player rightPlayer, List<TitleDeed> leftTitleDeads, List<TitleDeed> rightTitleDeads, int moneyLeft, int moneyRight){
+    public boolean swap(Player leftPlayer, Player rightPlayer, List<TitleDeed> leftTitleDeads, List<TitleDeed> rightTitleDeads, int moneyLeft, int moneyRight){
         if (leftPlayer != rightPlayer) {
-            for (TitleDeed elem : leftTitleDeads) {
-                List<TitleDeed> group = leftPlayer.getTitleDeeds().get(elem.getType()).getGroup();
-                group.remove(elem);
-                rightPlayer.addTitleDeed(elem);
+            if (rightPlayer.takePlayerMoney(leftPlayer, moneyLeft) && leftPlayer.takePlayerMoney(rightPlayer, moneyRight)) {
+                for (TitleDeed elem : leftTitleDeads) {
+                    List<TitleDeed> group = leftPlayer.getTitleDeeds().get(elem.getType()).getGroup();
+                    group.remove(elem);
+                    rightPlayer.addTitleDeed(elem);
+                }
+                for (TitleDeed elem : rightTitleDeads) {
+                    List<TitleDeed> group = rightPlayer.getTitleDeeds().get(elem.getType()).getGroup();
+                    group.remove(elem);
+                    leftPlayer.addTitleDeed(elem);
+                }
+                leftPlayer.updateImageViewsTitleDeads();
+                rightPlayer.updateImageViewsTitleDeads();
+                return (true);
             }
-            for (TitleDeed elem : rightTitleDeads) {
-                List<TitleDeed> group = rightPlayer.getTitleDeeds().get(elem.getType()).getGroup();
-                group.remove(elem);
-                leftPlayer.addTitleDeed(elem);
-            }
-            rightPlayer.takePlayerMoney(leftPlayer, moneyLeft);
-            leftPlayer.takePlayerMoney(rightPlayer, moneyRight);
-            leftPlayer.updateImageViewsTitleDeads();
-            rightPlayer.updateImageViewsTitleDeads();
         }
+        return (false);
     }
 
     public void checkPosition(Player curPlayer) {

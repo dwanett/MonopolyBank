@@ -9,6 +9,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -20,7 +21,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="486.0" layoutY="324.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="324.0">
+      <ImageView fitHeight="70.0" fitWidth="75.0" layoutX="478.0" layoutY="315.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="315.0">
          <image>
             <Image url="@swap.png" />
          </image>
@@ -35,9 +36,19 @@
       </TableView>
       <TextField fx:id="moneyLeft" alignment="CENTER" layoutX="208.0" layoutY="661.0" promptText="Деньги" />
       <TextField fx:id="moneyRight" alignment="CENTER" layoutX="667.0" layoutY="661.0" promptText="Деньги" />
-      <ListView fx:id="listLeft" layoutX="121.0" layoutY="35.0" prefHeight="612.0" prefWidth="270.0" />
-      <ListView fx:id="listRight" layoutX="633.0" layoutY="35.0" prefHeight="612.0" prefWidth="270.0" />
+      <ListView fx:id="listLeft" layoutX="121.0" layoutY="35.0" prefHeight="612.0" prefWidth="213.0" />
+      <ListView fx:id="listRight" layoutX="690.0" layoutY="35.0" prefHeight="612.0" prefWidth="213.0" />
       <Button fx:id="swap" layoutX="486.0" layoutY="661.0" mnemonicParsing="false" text="Обмен" />
-      <Label fx:id="info" alignment="CENTER" layoutX="435.0" layoutY="639.0" prefHeight="17.0" prefWidth="163.0" textFill="RED" />
+      <Label fx:id="info" alignment="CENTER" layoutX="376.0" layoutY="639.0" prefHeight="17.0" prefWidth="274.0" textFill="RED" />
+      <Label fx:id="moneyLeftPlayer" alignment="CENTER" layoutX="47.0" layoutY="664.0" prefHeight="20.0" prefWidth="149.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="moneyRightPlayer" alignment="CENTER" layoutX="829.0" layoutY="664.0" prefHeight="20.0" prefWidth="149.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

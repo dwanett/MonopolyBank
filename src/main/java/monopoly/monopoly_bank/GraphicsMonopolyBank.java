@@ -6,7 +6,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Orientation;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -54,6 +53,9 @@ public class GraphicsMonopolyBank {
 
     @FXML
     private TextField countMoneyTake;
+
+    @FXML
+    private TextField newPrice;
 
     @FXML
     private Button steps;
@@ -108,7 +110,7 @@ public class GraphicsMonopolyBank {
     @FXML
     void initialize() {
         this.tablePlayers.setItems(this.players);
-        this.tablePlayers.setStyle("-fx-fixed-cell-size: " + (size + 20));
+        this.tablePlayers.setStyle("-fx-fixed-cell-size: " + (size + 50));
         this.player.setCellValueFactory(cellData -> cellData.getValue().getName());
         this.money.setCellValueFactory(cellData1 -> cellData1.getValue().getMoney().asObject());
         this.titleDead.setCellValueFactory(cellData2 -> {
@@ -122,16 +124,13 @@ public class GraphicsMonopolyBank {
 
         this.steps.setOnAction(actionEvent -> {
             this.infoStep.setText("");
-            String text = this.countSteps.getText();
-            int step = 0;
-            if (!text.isEmpty()) {
-                if (text.matches("\\d+"))
-                    step = Integer.parseInt(this.countSteps.getText());
+            int step = getAndCheckIntValue(this.countSteps, this.infoStep);
+            if (step != -1) {
+                if (step < 2 || step > 12)
+                    this.infoStep.setText("Количество очков должно быть от 2 до 12");
+                else
+                    this.bank.walk(step);
             }
-            if (step < 2 || step > 12)
-                this.infoStep.setText("Количество очков должно быть от 2 до 12");
-            else
-                this.bank.walk(step);
         });
 
         this.buy.setOnAction(actionEvent -> {
@@ -150,7 +149,25 @@ public class GraphicsMonopolyBank {
                 this.infoBuy.setText("Выберите улицу");
         });
 
-        this.mortgaged.setOnAction(actionEvent -> {
+        this.auction.setOnAction(actionEvent -> {
+            this.infoBuy.setText("");
+            ImageView selectedTitleDead = this.freeTitleDeadsImage.getSelectionModel().getSelectedItem();
+            if (selectedTitleDead != null) {
+                Player selectedPlayer = this.tablePlayers.getSelectionModel().getSelectedItem();
+                if (selectedPlayer != null) {
+                    int index = this.bank.getImageViewsTitleDeads().indexOf(selectedTitleDead);
+                    int newPrice = getAndCheckIntValue(this.newPrice, this.infoBuy);
+                    if (newPrice != -1)
+                        selectedPlayer.auction(this.bank, this.bank.getFreeTitleDeads().get(index), newPrice);
+                }
+                else
+                    this.infoBuy.setText("Выберите игрока");
+            }
+            else
+                this.infoBuy.setText("Выберите улицу");
+        });
+
+         this.mortgaged.setOnAction(actionEvent -> {
             this.infoMortgaged.setText("");
             Player selectedPlayer = this.tablePlayers.getSelectionModel().getSelectedItem();
             if (selectedPlayer != null) {
@@ -176,39 +193,27 @@ public class GraphicsMonopolyBank {
 
         this.addMoneyPlayer.setOnAction(actionEvent -> {
             this.infoStep.setText("");
-            String text = this.countMoneyAdd.getText();
-            long money = 0;
-            if (!text.isEmpty())
-                money = Long.parseLong(text);
-            if (money < Integer.MAX_VALUE) {
+            int money = getAndCheckIntValue(this.countMoneyAdd, this.infoStep);
+            if (money != -1) {
                 Player selectedPlayer = this.tablePlayers.getSelectionModel().getSelectedItem();
                 if (selectedPlayer != null) {
-                    selectedPlayer.addMoney((int)money);
+                    selectedPlayer.addMoney(money);
                 }
                 else
                     this.infoStep.setText("Выберите игрока");
-            }
-            else {
-                this.infoStep.setText("Слишком большое число!");
             }
         });
 
         this.takeMoneyPlayer.setOnAction(actionEvent -> {
             this.infoStep.setText("");
-            String text = this.countMoneyTake.getText();
-            long money = 0;
-            if (!text.isEmpty())
-                money = Long.parseLong(text);
-            if (money < Integer.MAX_VALUE) {
+            int money = getAndCheckIntValue(this.countMoneyTake, this.infoStep);
+            if (money != -1) {
                 Player selectedPlayer = this.tablePlayers.getSelectionModel().getSelectedItem();
                 if (selectedPlayer != null) {
-                    selectedPlayer.takeMoney((int)money);
+                    selectedPlayer.takeMoney(money);
                 }
                 else
                     this.infoStep.setText("Выберите игрока");
-            }
-            else {
-                this.infoStep.setText("Слишком большое число!");
             }
         });
 
@@ -219,6 +224,8 @@ public class GraphicsMonopolyBank {
             fxmlLoader.setController(classSwap);
             try {
                 Scene scene = new Scene(fxmlLoader.load(), 1024, 700);
+                String css = getClass().getResource("swap.css").toExternalForm();
+                scene.getStylesheets().add(css);
                 InputStream iconStream = getClass().getResourceAsStream("logo.jpg");
                 Image image = new Image(iconStream);
                 stage.getIcons().add(image);
@@ -230,5 +237,25 @@ public class GraphicsMonopolyBank {
                 e.printStackTrace();
             }
         });
+    }
+
+    public int getAndCheckIntValue(TextField textField, Label messageError) {
+        long value = 0;
+        String str = textField.getText();
+        if (!str.isEmpty()) {
+            if (str.matches("\\d+")) {
+                value = Long.parseLong(str);
+                if (value < Integer.MAX_VALUE) {
+                    return (int)value;
+                }
+                else
+                    messageError.setText("Слишком большое число");
+            }
+            else
+                messageError.setText("Должны быть числом");
+        }
+        else
+            return (int)value;
+        return -1;
     }
 }

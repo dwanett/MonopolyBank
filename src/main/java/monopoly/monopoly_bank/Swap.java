@@ -62,6 +62,12 @@ public class Swap {
     @FXML
     private Label info;
 
+    @FXML
+    private Label moneyLeftPlayer;
+
+    @FXML
+    private Label moneyRightPlayer;
+
     public Swap(MonopolyBank bank, ObservableList<Player> players, Map<String, ListView<ImageView>> playerTitleDeadsImageMap, Stage stage) {
         this.bank = bank;
         this.stage = stage;
@@ -77,16 +83,20 @@ public class Swap {
         this.tableRight.setItems(this.players);
         this.playersLeft.setCellValueFactory(cellData -> cellData.getValue().getName());
         this.playersRight.setCellValueFactory(cellData -> cellData.getValue().getName());
+
         this.listLeft.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         this.listRight.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
         this.tableLeft.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, selectedLeftPlayer) -> {
             if (selectedLeftPlayer != null) {
                 this.listLeft.setItems(newListImagesView(selectedLeftPlayer));
+                this.moneyLeftPlayer.setText(selectedLeftPlayer.getMoney().get() + "");
             }
         });
         this.tableRight.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, selectedRightPlayer) -> {
             if (selectedRightPlayer != null) {
                 this.listRight.setItems(newListImagesView(selectedRightPlayer));
+                this.moneyRightPlayer.setText(selectedRightPlayer.getMoney().get() + "");
             }
         });
 
@@ -99,8 +109,14 @@ public class Swap {
             int moneyLeft = takeInfo(selectedLeftPlayer, leftTitleDeads, this.listLeft, this.moneyLeft);
             int moneyRight = takeInfo(selectedRightPlayer, rightTitleDeads, this.listRight, this.moneyRight);
             if (moneyLeft != -1 && moneyRight != -1) {
-                bank.swap(selectedLeftPlayer, selectedRightPlayer, leftTitleDeads, rightTitleDeads, moneyLeft, moneyRight);
-                this.stage.close();
+                if (bank.swap(selectedLeftPlayer, selectedRightPlayer, leftTitleDeads, rightTitleDeads, moneyLeft, moneyRight))
+                    this.stage.close();
+                else {
+                    if (selectedLeftPlayer.getMoney().get() < moneyLeft)
+                        this.info.setText("У "+ selectedLeftPlayer.getName().getValue() +" не хватает денег");
+                    if (selectedRightPlayer.getMoney().get() < moneyRight)
+                        this.info.setText("У "+ selectedRightPlayer.getName().getValue() +" не хватает денег");
+                }
             }
         });
     }
@@ -120,23 +136,39 @@ public class Swap {
     public int takeInfo(Player player, List<TitleDeed> titleDeads, ListView<ImageView> list, TextField moneyText) {
         if (player != null) {
             ObservableList<ImageView> selectedImage = list.getSelectionModel().getSelectedItems();
-            String moneyString = moneyText.getText();
-            if (moneyString.matches("\\d+")) {
-                long money = Integer.parseInt(moneyString);
-                if (money < Integer.MAX_VALUE) {
-                    for (ImageView imageView : selectedImage) {
-                        TitleDeed cur = player.findTitleDeadForImageFront(imageView.getImage());
-                        if (cur == null)
-                            cur = player.findTitleDeadForImageBack(imageView.getImage());
-                        titleDeads.add(cur);
-                    }
-                    return (int) money;
-                } else
-                    this.info.setText("Слишком большое число!");
-            } else
-                this.info.setText("Деньги должны быть числом");
-        } else
+            int money = getAndCheckIntValue(moneyText, this.info);
+            if (money != -1) {
+                for (ImageView imageView : selectedImage) {
+                    TitleDeed cur = player.findTitleDeadForImageFront(imageView.getImage());
+                    if (cur == null)
+                        cur = player.findTitleDeadForImageBack(imageView.getImage());
+                    titleDeads.add(cur);
+                }
+                return money;
+            }
+        }
+        else
             this.info.setText("Выберите игрока/ов");
+        return -1;
+    }
+
+    public int getAndCheckIntValue(TextField textField, Label messageError) {
+        long value = 0;
+        String str = textField.getText();
+        if (!str.isEmpty()) {
+            if (str.matches("\\d+")) {
+                value = Long.parseLong(str);
+                if (value < Integer.MAX_VALUE) {
+                    return (int)value;
+                }
+                else
+                    messageError.setText("Слишком большое число");
+            }
+            else
+                messageError.setText("Должны быть числом");
+        }
+        else
+            return (int)value;
         return -1;
     }
 }

@@ -8,6 +8,10 @@
     -fx-background-color: #f0fdf5;
 }
 
+.label {
+    -fx-font-size: 14;
+}
+
 .button{
     -fx-background-color: #ff2f2f;
     -fx-text-fill: #ffffff;
@@ -102,7 +106,7 @@
 .table-view .table-cell{
     -fx-border-color: transparent;
     -fx-padding: 2 0 2 10px;
-    -fx-font-size: 50;
+    -fx-font-size: 20;
     -fx-position-shape: center;
 }
 

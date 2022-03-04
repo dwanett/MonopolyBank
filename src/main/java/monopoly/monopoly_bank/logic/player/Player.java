@@ -58,12 +58,29 @@ public class Player {
         this.imageViewsTitleDeads.set(imageViewsTitleDeads);
     }
 
+    public boolean auction(MonopolyBank bank, TitleDeed newTitleDeed, int newPrice) {
+        if (!newTitleDeed.isBuy()) {
+            if (this.takeMoney(newPrice)) {
+                this.addTitleDeed(newTitleDeed);
+                this.updateImageViewsTitleDeads();
+                newTitleDeed.setBuy(true);
+                int indexElem = bank.getFreeTitleDeads().indexOf(newTitleDeed);
+                bank.getFreeTitleDeads().remove(indexElem);
+                bank.getImageViewsTitleDeadsProperty().remove(indexElem);
+                System.out.println(this.getName() + " buy street " + newTitleDeed.getName());
+                return (true);
+            } else
+                System.err.println("Error: Not have money");
+        }
+        else {
+            System.err.println("Error: " + newTitleDeed.getName() + " street is buy");
+        }
+        return (false);
+    }
+
     public boolean buyTitleDeed(MonopolyBank bank, TitleDeed newTitleDeed) {
         if (!newTitleDeed.isBuy()) {
-            int tmpMoney = getMoney().get() - newTitleDeed.getPrice();
-
-            if (tmpMoney >= 0) {
-                this.money.set(tmpMoney);
+            if (this.takeMoney(newTitleDeed.getPrice())) {
                 this.addTitleDeed(newTitleDeed);
                 this.updateImageViewsTitleDeads();
                 newTitleDeed.setBuy(true);
@@ -110,10 +127,13 @@ public class Player {
                 System.out.println("You mortgaged street");
             }
             else {
-                elem.setMortgaged(false);
-                this.updateImageViewsTitleDeads();
-                this.takeMoney(elem.getPricePledge() + (int)(elem.getPricePledge() * 0.1));
-                System.out.println("You buyback street");
+                if (this.takeMoney(elem.getPricePledge() + (int)(elem.getPricePledge() * 0.1))) {
+                    elem.setMortgaged(false);
+                    this.updateImageViewsTitleDeads();
+                    System.out.println("You buyback street");
+                }
+                else
+                    System.err.println("Error: Not have money");
             }
         }
         else
@@ -129,16 +149,26 @@ public class Player {
     }
 
     public void addMoney(int money) {
-        this.money.set(this.money.get() + money);
+        long tmp = (long)this.money.get() + (long)money;
+        if (tmp < Integer.MAX_VALUE)
+            this.money.set((int) tmp);
     }
 
-    public void takeMoney(int money) {
-        this.money.set(this.money.get() - money);
+    public boolean takeMoney(int money) {
+        int tmp = this.money.get() - money;
+        if (tmp >= 0)
+            this.money.set(tmp);
+        else
+            return (false);
+        return (true);
     }
 
-    public void takePlayerMoney(Player target, int money) {
-        this.addMoney(money);
-        target.takeMoney(money);
+    public boolean takePlayerMoney(Player target, int money) {
+        if (target.takeMoney(money)) {
+            this.addMoney(money);
+            return (true);
+        }
+        return (false);
     }
 
     public void takeRent(Player targetPlayer, TitleDeed titleDeed, GroupTitleDeed group) {
