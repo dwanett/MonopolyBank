@@ -22,6 +22,7 @@
                 <TextField fx:id="namePlayer1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" promptText="Игрок 1" />
                 <TextField fx:id="namePlayer2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" promptText="Игрок 2" />
                 <TextField fx:id="namePlayer3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" promptText="Игрок 3" />
+            <Label fx:id="info" alignment="CENTER" prefHeight="17.0" prefWidth="197.0" textAlignment="CENTER" textFill="RED" />
             </children>
             <opaqueInsets>
                 <Insets />

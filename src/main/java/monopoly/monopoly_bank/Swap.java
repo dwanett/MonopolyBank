@@ -110,8 +110,8 @@ public class Swap {
         ObservableList<ImageView> oldList = selectedPlayer.getImageViewsTitleDeadsProperty();
         for (ImageView elem : oldList) {
             ImageView newImages = new ImageView(elem.getImage());
-            newImages.setFitHeight(elem.getImage().getHeight() / 5);
-            newImages.setFitWidth(elem.getImage().getWidth() / 5);
+            newImages.setFitHeight(elem.getImage().getHeight() * 0.6);
+            newImages.setFitWidth(elem.getImage().getWidth() * 0.6);
             newList.add(newImages);
         }
         return newList;

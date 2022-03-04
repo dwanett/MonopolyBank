@@ -12,7 +12,7 @@
     <children>
       <Button fx:id="next" layoutX="894.0" layoutY="506.0" mnemonicParsing="false" text="Ок" AnchorPane.bottomAnchor="19.0" AnchorPane.rightAnchor="24.0" />
       <Button fx:id="back" layoutX="14.0" layoutY="506.0" mnemonicParsing="false" text="Назад" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="14.0" />
-      <VBox alignment="CENTER" layoutX="377.0" layoutY="223.0" prefHeight="152.0" prefWidth="209.0" spacing="10.0" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="377.0" AnchorPane.rightAnchor="364.0" AnchorPane.topAnchor="223.0">
+      <VBox alignment="CENTER" layoutX="371.0" layoutY="192.0" prefHeight="152.0" prefWidth="209.0" spacing="10.0" AnchorPane.bottomAnchor="191.0" AnchorPane.leftAnchor="371.0" AnchorPane.rightAnchor="370.0" AnchorPane.topAnchor="192.0">
          <children>
             <Label alignment="CENTER" prefHeight="35.0" prefWidth="200.0" text="Введите имена игроков">
                <font>
@@ -23,6 +23,7 @@
             <TextField fx:id="namePlayer2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" promptText="Игрок 2" />
             <TextField fx:id="namePlayer3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" promptText="Игрок 3" />
             <TextField fx:id="namePlayer4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" promptText="Игрок 4" />
+            <Label fx:id="info" alignment="CENTER" prefHeight="17.0" prefWidth="197.0" textAlignment="CENTER" textFill="RED" />
          </children>
          <opaqueInsets>
             <Insets />

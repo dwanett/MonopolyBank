@@ -133,7 +133,6 @@ public class MonopolyBank {
     public void checkPosition(Player curPlayer) {
         for(TitleDeed elem : freeTitleDeads){
             if (elem.getPosition() == curPlayer.getCurPosition()) {
-                int i = freeTitleDeads.indexOf(elem);
                 if (curPlayer.buyTitleDeed(this, elem)) {
                     return;
                 }

@@ -135,16 +135,16 @@ public abstract class TitleDeed {
     public ImageView getImageViewFront() {
         Image image = getImageFront();
         ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(image.getHeight() / 8);
-        imageView.setFitWidth(image.getWidth() / 8);
+        imageView.setFitHeight(image.getHeight() * 0.5);
+        imageView.setFitWidth(image.getWidth() * 0.5);
         return (imageView);
     }
 
     public ImageView getImageViewBack() {
         Image image = getImageBack();
         ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(image.getHeight() / 8);
-        imageView.setFitWidth(image.getWidth() / 8);
+        imageView.setFitHeight(image.getHeight() * 0.5);
+        imageView.setFitWidth(image.getWidth() * 0.5);
         return (imageView);
     }
 

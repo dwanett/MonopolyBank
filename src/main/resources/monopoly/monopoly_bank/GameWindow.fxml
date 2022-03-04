@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="983.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1168.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="145.0" prefWidth="983.0" AnchorPane.bottomAnchor="405.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="185.0" prefWidth="1168.0" AnchorPane.bottomAnchor="445.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TableView fx:id="tablePlayers" layoutX="6.0" prefHeight="409.0" prefWidth="983.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="tablePlayers" prefHeight="209.0" prefWidth="1168.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <columns>
                 <TableColumn fx:id="player" prefWidth="174.0" text="Имя" />
                   <TableColumn fx:id="titleDead" prefWidth="480.0" text="Активы" />
@@ -27,17 +27,17 @@
             </TableView>
          </children>
       </AnchorPane>
-      <VBox alignment="CENTER" layoutX="255.0" layoutY="163.0" prefHeight="387.0" prefWidth="455.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="255.0" AnchorPane.rightAnchor="273.0">
+      <VBox alignment="CENTER" layoutX="255.0" layoutY="163.0" prefHeight="431.0" prefWidth="640.0" spacing="10.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="255.0" AnchorPane.rightAnchor="273.0">
          <children>
             <HBox alignment="CENTER" prefHeight="42.0" prefWidth="455.0">
                <children>
-                  <Button fx:id="mortgaged" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Заложить\Выкупить" />
+                  <Button fx:id="mortgaged" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Заложить\Выкупить" />
                </children>
             </HBox>
             <Label fx:id="infoMortgaged" alignment="CENTER" prefHeight="18.0" prefWidth="222.0" textAlignment="CENTER" textFill="RED" />
-            <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="225.0" prefWidth="327.0">
+            <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="345.0" prefWidth="640.0">
                <content>
-                  <ListView fx:id="freeTitleDeadsImage" orientation="HORIZONTAL" prefHeight="200.0" prefWidth="200.0" />
+                  <ListView fx:id="freeTitleDeadsImage" orientation="HORIZONTAL" prefHeight="316.0" prefWidth="638.0" />
                </content>
             </ScrollPane>
             <Button fx:id="buy" mnemonicParsing="false" text="Купить" />
@@ -48,12 +48,12 @@
          <children>
             <Label fx:id="infoSwapAuctionAddMoney" alignment="CENTER" prefHeight="17.0" prefWidth="164.0" textAlignment="CENTER" textFill="RED" />
             <Button fx:id="swap" mnemonicParsing="false" text="Обмен" />
-            <Button fx:id="auction" mnemonicParsing="false" prefWidth="64.0" text="Аукцион" />
+            <Button fx:id="auction" mnemonicParsing="false" text="Аукцион" />
          </children>
       </VBox>
-      <VBox layoutX="34.0" layoutY="391.0" prefHeight="122.0" prefWidth="176.0" spacing="10.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="34.0">
+      <VBox layoutX="34.0" layoutY="391.0" prefHeight="122.0" prefWidth="216.0" spacing="10.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="34.0">
          <children>
-            <Label fx:id="infoStep" prefHeight="18.0" prefWidth="164.0" textFill="RED" />
+            <Label fx:id="infoStep" prefHeight="17.0" prefWidth="179.0" textFill="RED" />
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                <children>
                   <TextField fx:id="countSteps" prefHeight="25.0" prefWidth="76.0" />
@@ -62,14 +62,14 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                <children>
-                  <TextField fx:id="countMoney" prefHeight="25.0" prefWidth="76.0" />
+                  <TextField fx:id="countMoneyAdd" prefHeight="25.0" prefWidth="76.0" />
                   <Button fx:id="addMoneyPlayer" mnemonicParsing="false" text="Пополнить" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                <children>
-                  <TextField fx:id="countMoney1" prefHeight="25.0" prefWidth="76.0" />
-                  <Button fx:id="addMoneyPlayer1" mnemonicParsing="false" text="Снять" />
+                  <TextField fx:id="countMoneyTake" prefHeight="25.0" prefWidth="76.0" />
+                  <Button fx:id="takeMoneyPlayer" mnemonicParsing="false" text="Снять" />
                </children>
             </HBox>
          </children>

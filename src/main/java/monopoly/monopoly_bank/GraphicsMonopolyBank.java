@@ -50,13 +50,19 @@ public class GraphicsMonopolyBank {
     private TextField countSteps;
 
     @FXML
-    private TextField countMoney;
+    private TextField countMoneyAdd;
+
+    @FXML
+    private TextField countMoneyTake;
 
     @FXML
     private Button steps;
 
     @FXML
     private Button addMoneyPlayer;
+
+    @FXML
+    private Button takeMoneyPlayer;
 
     @FXML
     private Button swap;
@@ -108,6 +114,7 @@ public class GraphicsMonopolyBank {
         this.titleDead.setCellValueFactory(cellData2 -> {
             ListView<ImageView> cur = this.playerTitleDeadsImageMap.get(cellData2.getValue().getName().getValue());
             cur.setItems(cellData2.getValue().getImageViewsTitleDeads());
+            cur.setStyle("-fx-background-color: transparent");
             return new SimpleObjectProperty<>(cur);
         });
 
@@ -115,7 +122,12 @@ public class GraphicsMonopolyBank {
 
         this.steps.setOnAction(actionEvent -> {
             this.infoStep.setText("");
-            int step = Integer.parseInt(this.countSteps.getText());
+            String text = this.countSteps.getText();
+            int step = 0;
+            if (!text.isEmpty()) {
+                if (text.matches("\\d+"))
+                    step = Integer.parseInt(this.countSteps.getText());
+            }
             if (step < 2 || step > 12)
                 this.infoStep.setText("Количество очков должно быть от 2 до 12");
             else
@@ -164,11 +176,33 @@ public class GraphicsMonopolyBank {
 
         this.addMoneyPlayer.setOnAction(actionEvent -> {
             this.infoStep.setText("");
-            long money = Long.parseLong(this.countMoney.getText());
+            String text = this.countMoneyAdd.getText();
+            long money = 0;
+            if (!text.isEmpty())
+                money = Long.parseLong(text);
             if (money < Integer.MAX_VALUE) {
                 Player selectedPlayer = this.tablePlayers.getSelectionModel().getSelectedItem();
                 if (selectedPlayer != null) {
                     selectedPlayer.addMoney((int)money);
+                }
+                else
+                    this.infoStep.setText("Выберите игрока");
+            }
+            else {
+                this.infoStep.setText("Слишком большое число!");
+            }
+        });
+
+        this.takeMoneyPlayer.setOnAction(actionEvent -> {
+            this.infoStep.setText("");
+            String text = this.countMoneyTake.getText();
+            long money = 0;
+            if (!text.isEmpty())
+                money = Long.parseLong(text);
+            if (money < Integer.MAX_VALUE) {
+                Player selectedPlayer = this.tablePlayers.getSelectionModel().getSelectedItem();
+                if (selectedPlayer != null) {
+                    selectedPlayer.takeMoney((int)money);
                 }
                 else
                     this.infoStep.setText("Выберите игрока");

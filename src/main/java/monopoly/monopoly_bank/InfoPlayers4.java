@@ -4,6 +4,7 @@ import javafx.collections.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import monopoly.monopoly_bank.logic.player.Player;
 
@@ -38,6 +39,9 @@ public class InfoPlayers4 {
     @FXML
     private Button next;
 
+    @FXML
+    private Label info;
+
     public InfoPlayers4(Graphics graphics) {
         this.graphics = graphics;
     }
@@ -52,18 +56,31 @@ public class InfoPlayers4 {
         });
 
         this.next.setOnAction(actionEvent -> {
+            this.info.setText("");
             ObservableList<Player> players = FXCollections.observableArrayList();
-            players.add(new Player(this.namePlayer1.getText(), 15_000_000));
-            players.add(new Player(this.namePlayer2.getText(), 15_000_000));
-            players.add(new Player(this.namePlayer3.getText(), 15_000_000));
-            players.add(new Player(this.namePlayer4.getText(), 15_000_000));
-            MonopolyBank bank = new MonopolyBank(players, 0);
-            GraphicsMonopolyBank gBank = new GraphicsMonopolyBank(bank, graphics);
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GameWindow.fxml"));
-            fxmlLoader.setController(gBank);
-            this.graphics.newScene(fxmlLoader, actionEvent);
+            String name1 = this.namePlayer1.getText();
+            String name2 = this.namePlayer2.getText();
+            String name3 = this.namePlayer3.getText();
+            String name4 = this.namePlayer4.getText();
+            if (!name1.isEmpty() && !name2.isEmpty() && !name3.isEmpty()) {
+                if (!name1.equals(name2) && !name1.equals(name3) && !name2.equals(name3)
+                        && !name1.equals(name4) && !name2.equals(name4) && !name3.equals(name4)) {
+                    players.add(new Player(name1, 15_000_000));
+                    players.add(new Player(name2, 15_000_000));
+                    players.add(new Player(name3, 15_000_000));
+                    players.add(new Player(name4, 15_000_000));
+                    MonopolyBank bank = new MonopolyBank(players, 0);
+                    GraphicsMonopolyBank gBank = new GraphicsMonopolyBank(bank, graphics);
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GameWindow.fxml"));
+                    fxmlLoader.setController(gBank);
+                    this.graphics.newScene(fxmlLoader, actionEvent);
+                }
+                else
+                    this.info.setText("Имена должны быть разными!");
+            }
+            else
+                this.info.setText("Имена не должны быть пустыми!");
         });
-
     }
 
     public Graphics getGraphics() {
