@@ -36,7 +36,7 @@
                   <ListView fx:id="freeTitleDeadsImage" orientation="HORIZONTAL" prefHeight="294.0" prefWidth="588.0" />
                </content>
             </ScrollPane>
-            <HBox alignment="CENTER" prefHeight="42.0" prefWidth="455.0" spacing="100.0">
+            <HBox alignment="CENTER" prefHeight="27.0" prefWidth="528.0" spacing="100.0">
                <children>
                   <Button fx:id="buy" mnemonicParsing="false" text="Купить" />
                   <AnchorPane prefHeight="27.0" prefWidth="159.0">
@@ -47,7 +47,7 @@
                   </AnchorPane>
                </children>
             </HBox>
-            <Label fx:id="infoBuy" alignment="CENTER" prefHeight="18.0" prefWidth="105.0" textAlignment="CENTER" textFill="RED" />
+            <Label fx:id="infoBuy" alignment="CENTER" prefHeight="15.0" prefWidth="228.0" textAlignment="CENTER" textFill="RED" />
          </children>
       </VBox>
       <VBox layoutX="34.0" layoutY="391.0" prefHeight="126.0" prefWidth="260.0" spacing="10.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="34.0">
@@ -73,9 +73,8 @@
             </HBox>
          </children>
       </VBox>
-      <VBox alignment="CENTER" layoutX="992.0" layoutY="524.0" prefHeight="77.0" prefWidth="176.0" spacing="10.0" AnchorPane.bottomAnchor="29.0" AnchorPane.rightAnchor="0.0">
+      <VBox alignment="CENTER" layoutX="992.0" layoutY="539.0" prefHeight="77.0" prefWidth="176.0" spacing="10.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Label fx:id="infoSwapAuctionAddMoney" alignment="CENTER" prefHeight="17.0" prefWidth="164.0" textAlignment="CENTER" textFill="RED" />
             <Button fx:id="swap" mnemonicParsing="false" text="Обмен" />
          </children>
       </VBox>

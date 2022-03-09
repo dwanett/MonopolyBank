@@ -167,7 +167,7 @@ public class GraphicsMonopolyBank {
                 this.infoBuy.setText("Выберите улицу");
         });
 
-         this.mortgaged.setOnAction(actionEvent -> {
+        this.mortgaged.setOnAction(actionEvent -> {
             this.infoMortgaged.setText("");
             Player selectedPlayer = this.tablePlayers.getSelectionModel().getSelectedItem();
             if (selectedPlayer != null) {

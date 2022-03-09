@@ -9,13 +9,14 @@
 }
 
 .label {
-    -fx-font-size: 14;
+    -fx-font-family: 'KabelCTT Medium';
+    -fx-font-size: 16;
 }
 
 .button{
     -fx-background-color: #ff2f2f;
     -fx-text-fill: #ffffff;
-    -fx-font-size: 15;
+    -fx-font-size: 16;
 }
 
 .scroll-pane {

@@ -67,10 +67,10 @@ public class Player {
                 int indexElem = bank.getFreeTitleDeads().indexOf(newTitleDeed);
                 bank.getFreeTitleDeads().remove(indexElem);
                 bank.getImageViewsTitleDeadsProperty().remove(indexElem);
-                System.out.println(this.getName() + " buy street " + newTitleDeed.getName());
+                System.out.println(this.getName().getValue() + " buy street " + newTitleDeed.getName());
                 return (true);
             } else
-                System.err.println("Error: Not have money");
+                System.err.println("Error: "+ this.getName().getValue() +" not have money");
         }
         else {
             System.err.println("Error: " + newTitleDeed.getName() + " street is buy");
@@ -87,10 +87,10 @@ public class Player {
                 int indexElem = bank.getFreeTitleDeads().indexOf(newTitleDeed);
                 bank.getFreeTitleDeads().remove(indexElem);
                 bank.getImageViewsTitleDeadsProperty().remove(indexElem);
-                System.out.println(this.getName() + " buy street " + newTitleDeed.getName());
+                System.out.println(this.getName().getValue() + " buy street " + newTitleDeed.getName());
                 return (true);
             } else
-                System.err.println("Error: Not have money");
+                System.err.println("Error: "+ this.getName().getValue() +" not have money");
         }
         else {
             System.err.println("Error: " + newTitleDeed.getName() + " street is buy");
@@ -106,7 +106,7 @@ public class Player {
                 tmp.add(newTitleDeed);
             }
             else
-                System.err.println("Error: You have this street");
+                System.err.println("Error: "+ this.getName().getValue() + " have street " + newTitleDeed.getName());
         }
         else {
             GroupTitleDeed newGroup = new GroupTitleDeed();
@@ -124,20 +124,20 @@ public class Player {
                 elem.setMortgaged(true);
                 this.updateImageViewsTitleDeads();
                 this.addMoney(elem.getPricePledge());
-                System.out.println("You mortgaged street");
+                System.out.println(this.getName().getValue() + " mortgaged street " + elem.getName());
             }
             else {
                 if (this.takeMoney(elem.getPricePledge() + (int)(elem.getPricePledge() * 0.1))) {
                     elem.setMortgaged(false);
                     this.updateImageViewsTitleDeads();
-                    System.out.println("You buyback street");
+                    System.out.println(this.getName().getValue() + " buyback street " + elem.getName());
                 }
                 else
-                    System.err.println("Error: Not have money");
+                    System.err.println("Error: "+ this.getName().getValue() +" not have money");
             }
         }
         else
-            System.err.println("Error: You not have this street");
+            System.err.println("Error: "+ this.getName().getValue() + " not have street" + titleDeed.getName());
     }
 
     public void payRent(int rent) {
