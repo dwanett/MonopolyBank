@@ -39,7 +39,7 @@
       <ListView fx:id="listLeft" layoutX="121.0" layoutY="35.0" prefHeight="612.0" prefWidth="213.0" />
       <ListView fx:id="listRight" layoutX="690.0" layoutY="35.0" prefHeight="612.0" prefWidth="213.0" />
       <Button fx:id="swap" layoutX="486.0" layoutY="661.0" mnemonicParsing="false" text="Обмен" />
-      <Label fx:id="info" alignment="CENTER" layoutX="376.0" layoutY="639.0" prefHeight="17.0" prefWidth="274.0" textFill="RED" />
+      <Label fx:id="info" alignment="CENTER" layoutX="334.0" layoutY="639.0" prefHeight="17.0" prefWidth="357.0" textFill="RED" />
       <Label fx:id="moneyLeftPlayer" alignment="CENTER" layoutX="47.0" layoutY="664.0" prefHeight="20.0" prefWidth="149.0">
          <font>
             <Font size="14.0" />

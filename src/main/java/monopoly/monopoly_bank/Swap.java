@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import monopoly.monopoly_bank.logic.player.GroupTitleDeed;
 import monopoly.monopoly_bank.logic.player.Player;
 import monopoly.monopoly_bank.logic.titledeeds.TitleDeed;
 
@@ -106,17 +107,34 @@ public class Swap {
             List<TitleDeed> rightTitleDeads = new ArrayList<>();
             int moneyLeft = takeInfo(selectedLeftPlayer, leftTitleDeads, this.listLeft, this.moneyLeft);
             int moneyRight = takeInfo(selectedRightPlayer, rightTitleDeads, this.listRight, this.moneyRight);
-            if (moneyLeft != -1 && moneyRight != -1) {
-                if (bank.swap(selectedLeftPlayer, selectedRightPlayer, leftTitleDeads, rightTitleDeads, moneyLeft, moneyRight))
-                    this.stage.close();
-                else {
-                    if (selectedLeftPlayer.getMoney().get() < moneyLeft)
-                        this.info.setText("У "+ selectedLeftPlayer.getName().getValue() +" не хватает денег");
-                    if (selectedRightPlayer.getMoney().get() < moneyRight)
-                        this.info.setText("У "+ selectedRightPlayer.getName().getValue() +" не хватает денег");
+            boolean leftCheckLvlRent = checkHomeorHotelSelectedTitleDead(selectedLeftPlayer, leftTitleDeads);
+            boolean rightCheckLvlRent = checkHomeorHotelSelectedTitleDead(selectedRightPlayer, rightTitleDeads);
+            if (leftCheckLvlRent && rightCheckLvlRent) {
+                if (moneyLeft != -1 && moneyRight != -1) {
+                    if (bank.swap(selectedLeftPlayer, selectedRightPlayer, leftTitleDeads, rightTitleDeads, moneyLeft, moneyRight))
+                        this.stage.close();
+                    else {
+                        if (selectedLeftPlayer.getMoney().get() < moneyLeft)
+                            this.info.setText("У " + selectedLeftPlayer.getName().getValue() + " не хватает денег");
+                        if (selectedRightPlayer.getMoney().get() < moneyRight)
+                            this.info.setText("У " + selectedRightPlayer.getName().getValue() + " не хватает денег");
+                    }
                 }
-            }
+            } else
+                this.info.setText("На выбранных улицах не должно быть домов!");
         });
+    }
+
+    public boolean checkHomeorHotelSelectedTitleDead(Player player, List<TitleDeed> titleDeads)
+    {
+        for (TitleDeed titleDead : titleDeads) {
+            GroupTitleDeed groupTitleDeed = player.getTitleDeeds().get(titleDead.getType());
+            for (TitleDeed elem : groupTitleDeed.getGroup()) {
+                if (elem.getLvlTakeRent() > 0)
+                    return false;
+            }
+        }
+        return true;
     }
 
     public ObservableList<ImageView> newListImagesView(Player selectedPlayer) {

@@ -15,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import monopoly.monopoly_bank.logic.player.GroupTitleDeed;
 import monopoly.monopoly_bank.logic.player.Player;
 import monopoly.monopoly_bank.logic.titledeeds.Street;
 import monopoly.monopoly_bank.logic.titledeeds.TitleDeed;
@@ -139,7 +140,18 @@ public class GraphicsMonopolyBank {
                 List<ImageView> selectedImagesNewList = new ArrayList<>(selectedImages);
                 for(ImageView imageView : selectedImagesNewList) {
                     TitleDeed findTitleDead = selectedPlayer.findTitleDeadForImage(imageView.getImage());
-                    selectedPlayer.mortgageTitleDeed(findTitleDead);
+                    GroupTitleDeed groupTitleDeed = selectedPlayer.getTitleDeeds().get(findTitleDead.getType());
+                    boolean checkLvlRent = true;
+                    for (TitleDeed elem : groupTitleDeed.getGroup()){
+                        if (elem.getLvlTakeRent() > 0) {
+                            checkLvlRent = false;
+                            break;
+                        }
+                    }
+                    if (checkLvlRent)
+                        selectedPlayer.mortgageTitleDeed(findTitleDead);
+                    else
+                        this.infoMortgaged.setText("Нужно снять дома или отели!");
                 }
             }
             else {
@@ -328,13 +340,14 @@ public class GraphicsMonopolyBank {
                     TitleDeed findTitleDead = selectedPlayer.findTitleDeadForImage(imageView.getImage());
                     if (!selectedPlayer.sellHomeOrHotel(findTitleDead)) {
                         if (findTitleDead.getClass() == Street.class) {
-                            if (!selectedPlayer.checkDifferenceCountHomeGroupTitleDeed(selectedPlayer.getTitleDeeds().get(findTitleDead.getType()), findTitleDead.getLvlTakeRent() - 1))
-                                this.infoMortgaged.setText("Разница в количестве домов должны быть не больше 1!");
-                            else if (findTitleDead.getLvlTakeRent() == 0)
+                            if (findTitleDead.getLvlTakeRent() == 0)
                                 this.infoMortgaged.setText("На этой улице нет домов или отеля!");
+                            else if (!selectedPlayer.checkDifferenceCountHomeGroupTitleDeed(selectedPlayer.getTitleDeeds().get(findTitleDead.getType()), findTitleDead.getLvlTakeRent() - 1))
+                                this.infoMortgaged.setText("Разница в количестве домов должны быть не больше 1!");
+
                         }
                         else
-                            this.infoMortgaged.setText("Здесь не могуть быть дома и отели!");
+                            this.infoMortgaged.setText("Здесь не могут быть дома и отели!");
                     }
                 }
             }

@@ -117,20 +117,29 @@ public class Player {
 
     public void mortgageTitleDeed(TitleDeed titleDeed) {
         GroupTitleDeed tmp = titleDeeds.get(titleDeed.getType());
+        boolean checkLvlRent = true;
 
         if (tmp != null && tmp.getGroup().contains(titleDeed)) {
-            TitleDeed elem = tmp.getGroup().get(tmp.getGroup().indexOf(titleDeed)); //Надо убрать!
-            if (!elem.isMortgaged()){
-                elem.setMortgaged(true);
-                this.updateImageViewsTitleDeads();
-                this.addMoney(elem.getPricePledge());
-                System.out.println(this.getName().getValue() + " mortgaged street " + elem.getName());
+            //TitleDeed elem = tmp.getGroup().get(tmp.getGroup().indexOf(titleDeed)); //Надо убрать!
+            if (!titleDeed.isMortgaged()){
+                for (TitleDeed elem : tmp.getGroup()){
+                    if (elem.getLvlTakeRent() > 0) {
+                        checkLvlRent = false;
+                        break;
+                    }
+                }
+                if(checkLvlRent) {
+                    titleDeed.setMortgaged(true);
+                    this.updateImageViewsTitleDeads();
+                    this.addMoney(titleDeed.getPricePledge());
+                    System.out.println(this.getName().getValue() + " mortgaged street " + titleDeed.getName());
+                }
             }
             else {
-                if (this.takeMoney(elem.getPricePledge() + (int)(elem.getPricePledge() * 0.1))) {
-                    elem.setMortgaged(false);
+                if (this.takeMoney(titleDeed.getPricePledge() + (int)(titleDeed.getPricePledge() * 0.1))) {
+                    titleDeed.setMortgaged(false);
                     this.updateImageViewsTitleDeads();
-                    System.out.println(this.getName().getValue() + " buyback street " + elem.getName());
+                    System.out.println(this.getName().getValue() + " buyback street " + titleDeed.getName());
                 }
                 else
                     System.err.println("Error mortgage: "+ this.getName().getValue() +" not have money");
