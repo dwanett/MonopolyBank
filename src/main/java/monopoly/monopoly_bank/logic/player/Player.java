@@ -119,7 +119,7 @@ public class Player {
         GroupTitleDeed tmp = titleDeeds.get(titleDeed.getType());
 
         if (tmp != null && tmp.getGroup().contains(titleDeed)) {
-            TitleDeed elem = tmp.getGroup().get(tmp.getGroup().indexOf(titleDeed));
+            TitleDeed elem = tmp.getGroup().get(tmp.getGroup().indexOf(titleDeed)); //Надо убрать!
             if (!elem.isMortgaged()){
                 elem.setMortgaged(true);
                 this.updateImageViewsTitleDeads();
@@ -133,11 +133,11 @@ public class Player {
                     System.out.println(this.getName().getValue() + " buyback street " + elem.getName());
                 }
                 else
-                    System.err.println("Error: "+ this.getName().getValue() +" not have money");
+                    System.err.println("Error mortgage: "+ this.getName().getValue() +" not have money");
             }
         }
         else
-            System.err.println("Error: "+ this.getName().getValue() + " not have street" + titleDeed.getName());
+            System.err.println("Error mortgage: "+ this.getName().getValue() + " not have street" + titleDeed.getName());
     }
 
     public void payRent(int rent) {
@@ -184,9 +184,67 @@ public class Player {
         }
     }
 
-    @Override
-    public String toString(){
-            return this.getName().toString();
+    public boolean checkDifferenceCountHomeGroupTitleDeed(GroupTitleDeed group, int newLvlRent){
+        int minCountHome = 0;
+        int maxCountHome = 0;
+        group.getGroup().get(0);
+        if (group.getGroup().get(0).getClass() == Street.class) {
+            for (TitleDeed elem : group.getGroup()) {
+                if (minCountHome > ((Street)elem).getLvlTakeRent() || minCountHome == 0)
+                    minCountHome = ((Street)elem).getLvlTakeRent();
+                if (maxCountHome < ((Street)elem).getLvlTakeRent() || maxCountHome == 0)
+                    maxCountHome = ((Street)elem).getLvlTakeRent();
+            }
+            return  (maxCountHome - newLvlRent <= 1 && newLvlRent - minCountHome <= 1);
+        }
+        return false;
+    }
+
+    public boolean buyHomeOrHotel(TitleDeed titleDeed){
+        if (titleDeed.getClass() == Street.class) {
+            GroupTitleDeed tmp = titleDeeds.get(titleDeed.getType());
+
+            if (tmp != null && tmp.getGroup().contains(titleDeed)) {
+                if (tmp.isFull()) {
+                    if (titleDeed.getLvlTakeRent() < 5) {
+                        if (checkDifferenceCountHomeGroupTitleDeed(tmp, titleDeed.getLvlTakeRent() + 1)) {
+                            if (this.takeMoney(((Street) titleDeed).getPriceHome())) {
+                                titleDeed.upLvlTakeRent();
+                                this.updateImageViewsTitleDeads();
+                                return (true);
+                            } else
+                                System.err.println("Error buy home: " + this.getName().getValue() + " not have money");
+                        }else
+                            System.err.println("Error buy home: " + this.getName().getValue() + " maximum difference in the number of houses 1");
+                    } else
+                        System.err.println("Error buy home: " + this.getName().getValue() + " has hotel on " + titleDeed.getName());
+                } else
+                    System.err.println("Error buy home: " + this.getName().getValue() + " not have full color group");
+            } else
+                System.err.println("Error buy home: " + this.getName().getValue() + " not have street" + titleDeed.getName());
+        }
+        return (false);
+    }
+
+    public boolean sellHomeOrHotel(TitleDeed titleDeed){
+        if (titleDeed.getClass() == Street.class) {
+            GroupTitleDeed tmp = titleDeeds.get(titleDeed.getType());
+
+            if (tmp != null && tmp.getGroup().contains(titleDeed)) {
+               if (titleDeed.getLvlTakeRent() != 0) {
+                   if (checkDifferenceCountHomeGroupTitleDeed(tmp, titleDeed.getLvlTakeRent() - 1)) {
+                       this.addMoney(((Street) titleDeed).getPriceHome() / 2);
+                       titleDeed.downLvlTakeRent();
+                       this.updateImageViewsTitleDeads();
+                       return (true);
+                   } else
+                       System.err.println("Error buy home: " + this.getName().getValue() + " maximum difference in the number of houses 1");
+               } else
+                   System.err.println("Error buy home: " + this.getName().getValue() + " not has home or hotel on " + titleDeed.getName());
+            } else
+                System.err.println("Error buy home: " + this.getName().getValue() + " not have street" + titleDeed.getName());
+        }
+        return (false);
     }
 
     public void updateImageViewsTitleDeads() {
@@ -194,30 +252,51 @@ public class Player {
         for (Map.Entry<String, GroupTitleDeed> group : this.getTitleDeeds().entrySet()) {
             for (TitleDeed elem : group.getValue().getGroup()) {
                 if (elem.isMortgaged())
-                    this.imageViewsTitleDeads.add(elem.getImageViewBack());
-                else
-                    this.imageViewsTitleDeads.add(elem.getImageViewFront());
+                    this.imageViewsTitleDeads.add(elem.creatImageView(elem.getImageBack()));
+                else {
+                    if (elem.getClass() == Street.class) {
+                        switch (elem.getLvlTakeRent()) {
+                            case 0: this.imageViewsTitleDeads.add(elem.creatImageView(elem.getImageFront())); break;
+                            case 1: this.imageViewsTitleDeads.add(elem.creatImageView(((Street)elem).getImageHome1())); break;
+                            case 2: this.imageViewsTitleDeads.add(elem.creatImageView(((Street)elem).getImageHome2())); break;
+                            case 3: this.imageViewsTitleDeads.add(elem.creatImageView(((Street)elem).getImageHome3())); break;
+                            case 4: this.imageViewsTitleDeads.add(elem.creatImageView(((Street)elem).getImageHome4())); break;
+                            case 5: this.imageViewsTitleDeads.add(elem.creatImageView(((Street)elem).getImageHotel())); break;
+                        }
+                    }
+                    else
+                        this.imageViewsTitleDeads.add(elem.creatImageView(elem.getImageFront()));
                 }
+            }
         }
     }
 
-    public TitleDeed findTitleDeadForImageFront(Image front) {
+    public TitleDeed findTitleDeadForImage(Image image) {
         for (Map.Entry<String, GroupTitleDeed> group : this.getTitleDeeds().entrySet()) {
              for (TitleDeed elem : group.getValue().getGroup()) {
-                 if (elem.getImageFront() == front)
+                 if (elem.getImageFront() == image)
                      return elem;
+                 if (elem.getImageBack() == image)
+                     return elem;
+                 if (elem.getClass() == Street.class) {
+                     if (((Street)elem).getImageHome1() == image)
+                         return elem;
+                     if (((Street)elem).getImageHome2() == image)
+                         return elem;
+                     if (((Street)elem).getImageHome3() == image)
+                         return elem;
+                     if (((Street)elem).getImageHome4() == image)
+                         return elem;
+                     if (((Street)elem).getImageHotel() == image)
+                         return elem;
+                 }
              }
         }
         return null;
     }
 
-    public TitleDeed findTitleDeadForImageBack(Image front) {
-        for (Map.Entry<String, GroupTitleDeed> group : this.getTitleDeeds().entrySet()) {
-            for (TitleDeed elem : group.getValue().getGroup()) {
-                if (elem.getImageBack() == front)
-                    return elem;
-            }
-        }
-        return null;
+    @Override
+    public String toString(){
+        return this.getName().toString();
     }
 }

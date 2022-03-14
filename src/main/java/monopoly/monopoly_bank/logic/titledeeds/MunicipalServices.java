@@ -18,6 +18,7 @@ public class MunicipalServices extends TitleDeed {
         this.setPathImageBack(pathImageBack);
         this.setImageFront(new Image(getClass().getResourceAsStream(getPathImageFront())));
         this.setImageBack(new Image(getClass().getResourceAsStream(getPathImageBack())));
+        this.setLvlTakeRent(0);
     }
 
 }

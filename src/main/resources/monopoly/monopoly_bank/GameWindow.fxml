@@ -3,6 +3,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -15,11 +17,11 @@
    <children>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="1168.0" AnchorPane.bottomAnchor="430.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TableView fx:id="tablePlayers" prefHeight="209.0" prefWidth="1168.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="tablePlayers" prefHeight="209.0" prefWidth="1168.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <columns>
-                <TableColumn fx:id="player" prefWidth="174.0" text="Имя" />
-                  <TableColumn fx:id="titleDead" prefWidth="480.0" text="Активы" />
-                  <TableColumn fx:id="money" prefWidth="222.0" text="Деньги" />
+                <TableColumn fx:id="player" prefWidth="204.0" text="Имя" />
+                  <TableColumn fx:id="titleDead" prefWidth="574.0" text="Активы" />
+                  <TableColumn fx:id="money" prefWidth="272.0" text="Деньги" />
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -27,55 +29,68 @@
             </TableView>
          </children>
       </AnchorPane>
-      <VBox alignment="CENTER" layoutX="295.0" layoutY="216.0" prefHeight="400.0" prefWidth="579.0" spacing="10.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="295.0" AnchorPane.rightAnchor="294.0">
+      <VBox alignment="CENTER" layoutX="295.0" layoutY="216.0" prefHeight="408.0" prefWidth="579.0" spacing="10.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="295.0" AnchorPane.rightAnchor="294.0">
          <children>
-            <Button fx:id="mortgaged" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Заложить\Выкупить" />
-            <Label fx:id="infoMortgaged" alignment="CENTER" prefHeight="18.0" prefWidth="222.0" textAlignment="CENTER" textFill="RED" />
-            <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="345.0" prefWidth="640.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+               <children>
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#mortgaged" text="Заложить\Выкупить" />
+                  <Button mnemonicParsing="false" onAction="#buyHomeOrHotel" text="Купить дом\отель" />
+                  <Button mnemonicParsing="false" onAction="#sellHomeOrHotel" text="Продать дом\отель" />
+               </children>
+            </HBox>
+            <Label fx:id="infoMortgaged" alignment="CENTER" prefHeight="18.0" prefWidth="534.0" textAlignment="CENTER" textFill="RED" />
+            <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="342.0" prefWidth="579.0">
                <content>
-                  <ListView fx:id="freeTitleDeadsImage" orientation="HORIZONTAL" prefHeight="294.0" prefWidth="588.0" />
+                  <ListView fx:id="freeTitleDeadsImage" orientation="HORIZONTAL" prefHeight="279.0" prefWidth="577.0" />
                </content>
             </ScrollPane>
             <HBox alignment="CENTER" prefHeight="27.0" prefWidth="528.0" spacing="100.0">
                <children>
-                  <Button fx:id="buy" mnemonicParsing="false" text="Купить" />
+                  <Button mnemonicParsing="false" onAction="#buy" text="Купить" />
                   <AnchorPane prefHeight="27.0" prefWidth="159.0">
                      <children>
-                        <Button fx:id="auction" mnemonicParsing="false" text="Купить за" />
+                        <Button mnemonicParsing="false" onAction="#auction" text="Купить за" />
                         <TextField fx:id="newPrice" layoutX="89.0" prefHeight="27.0" prefWidth="75.0" />
                      </children>
                   </AnchorPane>
                </children>
             </HBox>
-            <Label fx:id="infoBuy" alignment="CENTER" prefHeight="15.0" prefWidth="228.0" textAlignment="CENTER" textFill="RED" />
+            <Label fx:id="infoBuy" alignment="CENTER" prefHeight="26.0" prefWidth="281.0" textAlignment="CENTER" textFill="RED" />
          </children>
       </VBox>
-      <VBox layoutX="34.0" layoutY="391.0" prefHeight="126.0" prefWidth="260.0" spacing="10.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="34.0">
+      <VBox alignment="CENTER" layoutX="34.0" layoutY="391.0" prefHeight="169.0" prefWidth="260.0" spacing="5.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="34.0">
          <children>
-            <Label fx:id="infoStep" prefHeight="15.0" prefWidth="280.0" textFill="RED" />
+            <Label fx:id="infoStep" prefHeight="121.0" prefWidth="260.0" textFill="RED" wrapText="true" />
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                <children>
                   <TextField fx:id="countSteps" prefHeight="27.0" prefWidth="75.0" />
-                  <Button fx:id="steps" mnemonicParsing="false" text="Ход" />
+                  <Button mnemonicParsing="false" onAction="#steps" text="Ход" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                <children>
                   <TextField fx:id="countMoneyAdd" prefHeight="27.0" prefWidth="75.0" />
-                  <Button fx:id="addMoneyPlayer" mnemonicParsing="false" text="Пополнить" />
+                  <Button mnemonicParsing="false" onAction="#addMoneyPlayer" text="Пополнить" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                <children>
                   <TextField fx:id="countMoneyTake" prefHeight="27.0" prefWidth="75.0" />
-                  <Button fx:id="takeMoneyPlayer" mnemonicParsing="false" text="Снять" />
+                  <Button mnemonicParsing="false" onAction="#takeMoneyPlayer" text="Снять" />
                </children>
             </HBox>
          </children>
       </VBox>
-      <VBox alignment="CENTER" layoutX="992.0" layoutY="539.0" prefHeight="77.0" prefWidth="176.0" spacing="10.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="0.0">
+      <VBox alignment="CENTER" layoutX="978.0" layoutY="437.0" prefHeight="156.0" prefWidth="176.0" spacing="10.0" AnchorPane.bottomAnchor="37.0" AnchorPane.rightAnchor="14.0">
          <children>
-            <Button fx:id="swap" mnemonicParsing="false" text="Обмен" />
+            <Label fx:id="infoUtils" alignment="CENTER" prefHeight="41.0" prefWidth="179.0" textFill="RED" wrapText="true" />
+            <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" popupSide="TOP" text="Шанс" textFill="WHITE">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#takeMoneyAllPlayers" text="Получить с кажого игрока по 100" />
+              </items>
+            </MenuButton>
+            <Button mnemonicParsing="false" onAction="#lap" text="Круг" />
+            <Button mnemonicParsing="false" onAction="#swap" text="Обмен" />
          </children>
       </VBox>
    </children>

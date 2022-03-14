@@ -12,7 +12,7 @@
    <children>
       <Button fx:id="next" layoutX="894.0" layoutY="506.0" mnemonicParsing="false" text="Ок" AnchorPane.bottomAnchor="19.0" AnchorPane.rightAnchor="24.0" />
       <Button fx:id="back" layoutX="14.0" layoutY="506.0" mnemonicParsing="false" text="Назад" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="14.0" />
-      <VBox alignment="CENTER" layoutX="370.0" layoutY="212.0" maxHeight="127.0" maxWidth="221.0" minHeight="76.0" minWidth="191.0" prefHeight="127.0" prefWidth="211.0" spacing="10.0" AnchorPane.bottomAnchor="211.0" AnchorPane.leftAnchor="370.0" AnchorPane.rightAnchor="369.0" AnchorPane.topAnchor="212.0">
+      <VBox fx:id="vBox" alignment="CENTER" layoutX="370.0" layoutY="153.0" maxHeight="245.0" maxWidth="221.0" minHeight="76.0" minWidth="191.0" prefHeight="245.0" prefWidth="211.0" spacing="10.0" AnchorPane.bottomAnchor="152.0" AnchorPane.leftAnchor="370.0" AnchorPane.rightAnchor="369.0" AnchorPane.topAnchor="153.0">
          <children>
             <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" text="Введите имена игроков">
                <font>
@@ -21,6 +21,8 @@
             </Label>
             <TextField fx:id="namePlayer1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" promptText="Игрок 1" />
             <TextField fx:id="namePlayer2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" promptText="Игрок 2" />
+            <TextField fx:id="namePlayer3" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" promptText="Игрок 3" />
+            <TextField fx:id="namePlayer4" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" promptText="Игрок 4" />
             <Label fx:id="info" alignment="CENTER" prefHeight="17.0" prefWidth="197.0" textAlignment="CENTER" textFill="RED" />
          </children>
          <opaqueInsets>

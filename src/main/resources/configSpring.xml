@@ -22,6 +22,11 @@
         <constructor-arg name="fullGroup" value="2"/>
         <constructor-arg name="pathImageFront" value="blue/monegnay_front.png"/>
         <constructor-arg name="pathImageBack" value="blue/monegnay_back.png"/>
+        <constructor-arg name="pathImageHome1" value="blue/monegnay_one_home.png"/>
+        <constructor-arg name="pathImageHome2" value="blue/monegnay_two_home.png"/>
+        <constructor-arg name="pathImageHome3" value="blue/monegnay_three_home.png"/>
+        <constructor-arg name="pathImageHome4" value="blue/monegnay_four_home.png"/>
+        <constructor-arg name="pathImageHotel" value="blue/monegnay_hotel.png"/>
     </bean>
 
     <bean id="arbat_street"  class="monopoly.monopoly_bank.logic.titledeeds.Street">
@@ -39,6 +44,11 @@
         <constructor-arg name="fullGroup" value="2"/>
         <constructor-arg name="pathImageFront" value="blue/arbat_front.png"/>
         <constructor-arg name="pathImageBack" value="blue/arbat_back.png"/>
+        <constructor-arg name="pathImageHome1" value="blue/arbat_one_home.png"/>
+        <constructor-arg name="pathImageHome2" value="blue/arbat_two_home.png"/>
+        <constructor-arg name="pathImageHome3" value="blue/arbat_three_home.png"/>
+        <constructor-arg name="pathImageHome4" value="blue/arbat_four_home.png"/>
+        <constructor-arg name="pathImageHotel" value="blue/arbat_hotel.png"/>
     </bean>
 
     <bean id="teatralnaya_ploshchad"  class="monopoly.monopoly_bank.logic.titledeeds.Street">
@@ -56,6 +66,11 @@
         <constructor-arg name="fullGroup" value="3"/>
         <constructor-arg name="pathImageFront" value="green/teatralny_front.png"/>
         <constructor-arg name="pathImageBack" value="green/teatralny_back.png"/>
+        <constructor-arg name="pathImageHome1" value="green/teatralny_one_home.png"/>
+        <constructor-arg name="pathImageHome2" value="green/teatralny_two_home.png"/>
+        <constructor-arg name="pathImageHome3" value="green/teatralny_three_home.png"/>
+        <constructor-arg name="pathImageHome4" value="green/teatralny_four_home.png"/>
+        <constructor-arg name="pathImageHotel" value="green/teatralny_hotel.png"/>
     </bean>
 
     <bean id="okhotnyy_ryad_street"  class="monopoly.monopoly_bank.logic.titledeeds.Street">
@@ -73,6 +88,11 @@
         <constructor-arg name="fullGroup" value="3"/>
         <constructor-arg name="pathImageFront" value="green/ohotny_ryad_front.png"/>
         <constructor-arg name="pathImageBack" value="green/ohotny_ryad_back.png"/>
+        <constructor-arg name="pathImageHome1" value="green/ohotny_ryad_one_home.png"/>
+        <constructor-arg name="pathImageHome2" value="green/ohotny_ryad_two_home.png"/>
+        <constructor-arg name="pathImageHome3" value="green/ohotny_ryad_three_home.png"/>
+        <constructor-arg name="pathImageHome4" value="green/ohotny_ryad_four_home.png"/>
+        <constructor-arg name="pathImageHotel" value="green/ohotny_ryad_hotel.png"/>
     </bean>
 
     <bean id="novyy_arbat_street"  class="monopoly.monopoly_bank.logic.titledeeds.Street">
@@ -90,6 +110,12 @@
         <constructor-arg name="fullGroup" value="3"/>
         <constructor-arg name="pathImageFront" value="green/nowy_arbat_front.png"/>
         <constructor-arg name="pathImageBack" value="green/nowy_arbat_back.png"/>
+        <constructor-arg name="pathImageHome1" value="green/nowy_arbat_one_home.png"/>
+        <constructor-arg name="pathImageHome2" value="green/nowy_arbat_two_home.png"/>
+        <constructor-arg name="pathImageHome3" value="green/nowy_arbat_three_home.png"/>
+        <constructor-arg name="pathImageHome4" value="green/nowy_arbat_four_home.png"/>
+        <constructor-arg name="pathImageHotel" value="green/nowy_arbat_hotel.png"/>
+
     </bean>
 
     <bean id="kremlevskaya_naberezhnaya"  class="monopoly.monopoly_bank.logic.titledeeds.Street">
@@ -107,6 +133,11 @@
         <constructor-arg name="fullGroup" value="3"/>
         <constructor-arg name="pathImageFront" value="yellow/kremlyvsky_front.png"/>
         <constructor-arg name="pathImageBack" value="yellow/kremlyvsky_back.png"/>
+        <constructor-arg name="pathImageHome1" value="yellow/kremlyvsky_one_home.png"/>
+        <constructor-arg name="pathImageHome2" value="yellow/kremlyvsky_two_home.png"/>
+        <constructor-arg name="pathImageHome3" value="yellow/kremlyvsky_three_home.png"/>
+        <constructor-arg name="pathImageHome4" value="yellow/kremlyvsky_four_home.png"/>
+        <constructor-arg name="pathImageHotel" value="yellow/kremlyvsky_hotel.png"/>
     </bean>
 
     <bean id="vasilyevskiy_spusk"  class="monopoly.monopoly_bank.logic.titledeeds.Street">
@@ -124,6 +155,11 @@
         <constructor-arg name="fullGroup" value="3"/>
         <constructor-arg name="pathImageFront" value="yellow/vasylyvskiy_front.png"/>
         <constructor-arg name="pathImageBack" value="yellow/vasylyvskiy_back.png"/>
+        <constructor-arg name="pathImageHome1" value="yellow/vasylyvskiy_one_home.png"/>
+        <constructor-arg name="pathImageHome2" value="yellow/vasylyvskiy_two_home.png"/>
+        <constructor-arg name="pathImageHome3" value="yellow/vasylyvskiy_three_home.png"/>
+        <constructor-arg name="pathImageHome4" value="yellow/vasylyvskiy_four_home.png"/>
+        <constructor-arg name="pathImageHotel" value="yellow/vasylyvskiy_hotel.png"/>
     </bean>
 
     <bean id="kutuzovskiy_prospekt"  class="monopoly.monopoly_bank.logic.titledeeds.Street">
@@ -141,6 +177,11 @@
         <constructor-arg name="fullGroup" value="3"/>
         <constructor-arg name="pathImageFront" value="yellow/kutusovsky_front.png"/>
         <constructor-arg name="pathImageBack" value="yellow/kutusovsky_back.png"/>
+        <constructor-arg name="pathImageHome1" value="yellow/kutusovsky_one_home.png"/>
+        <constructor-arg name="pathImageHome2" value="yellow/kutusovsky_two_home.png"/>
+        <constructor-arg name="pathImageHome3" value="yellow/kutusovsky_three_home.png"/>
+        <constructor-arg name="pathImageHome4" value="yellow/kutusovsky_four_home.png"/>
+        <constructor-arg name="pathImageHotel" value="yellow/kutusovsky_hotel.png"/>
     </bean>
 
     <bean id="pushkinskaya_ploshchad"  class="monopoly.monopoly_bank.logic.titledeeds.Street">
@@ -158,6 +199,11 @@
         <constructor-arg name="fullGroup" value="3"/>
         <constructor-arg name="pathImageFront" value="red/pushkinsky_front.png"/>
         <constructor-arg name="pathImageBack" value="red/pushkinsky_back.png"/>
+        <constructor-arg name="pathImageHome1" value="red/pushkinsky_one_home.png"/>
+        <constructor-arg name="pathImageHome2" value="red/pushkinsky_two_home.png"/>
+        <constructor-arg name="pathImageHome3" value="red/pushkinsky_three_home.png"/>
+        <constructor-arg name="pathImageHome4" value="red/pushkinsky_four_home.png"/>
+        <constructor-arg name="pathImageHotel" value="red/pushkinsky_hotel.png"/>
     </bean>
 
     <bean id="mayakovskogo_ploshchad"  class="monopoly.monopoly_bank.logic.titledeeds.Street">
@@ -175,6 +221,11 @@
         <constructor-arg name="fullGroup" value="3"/>
         <constructor-arg name="pathImageFront" value="red/maykovsky_front.png"/>
         <constructor-arg name="pathImageBack" value="red/maykovsky_back.png"/>
+        <constructor-arg name="pathImageHome1" value="red/maykovsky_one_home.png"/>
+        <constructor-arg name="pathImageHome2" value="red/maykovsky_two_home.png"/>
+        <constructor-arg name="pathImageHome3" value="red/maykovsky_three_home.png"/>
+        <constructor-arg name="pathImageHome4" value="red/maykovsky_four_home.png"/>
+        <constructor-arg name="pathImageHotel" value="red/maykovsky_hotel.png"/>
     </bean>
 
     <bean id="tverskaya_street"  class="monopoly.monopoly_bank.logic.titledeeds.Street">
@@ -192,6 +243,11 @@
         <constructor-arg name="fullGroup" value="3"/>
         <constructor-arg name="pathImageFront" value="red/twersky_front.png"/>
         <constructor-arg name="pathImageBack" value="red/twersky_back.png"/>
+        <constructor-arg name="pathImageHome1" value="red/twersky_one_home.png"/>
+        <constructor-arg name="pathImageHome2" value="red/twersky_two_home.png"/>
+        <constructor-arg name="pathImageHome3" value="red/twersky_three_home.png"/>
+        <constructor-arg name="pathImageHome4" value="red/twersky_four_home.png"/>
+        <constructor-arg name="pathImageHotel" value="red/twersky_hotel.png"/>
     </bean>
 
     <bean id="rublevskoye_shosse"  class="monopoly.monopoly_bank.logic.titledeeds.Street">
@@ -209,6 +265,11 @@
         <constructor-arg name="fullGroup" value="3"/>
         <constructor-arg name="pathImageFront" value="orange/reblevskoe_front.png"/>
         <constructor-arg name="pathImageBack" value="orange/reblevskoe_back.png"/>
+        <constructor-arg name="pathImageHome1" value="orange/reblevskoe_one_home.png"/>
+        <constructor-arg name="pathImageHome2" value="orange/reblevskoe_two_home.png"/>
+        <constructor-arg name="pathImageHome3" value="orange/reblevskoe_three_home.png"/>
+        <constructor-arg name="pathImageHome4" value="orange/reblevskoe_four_home.png"/>
+        <constructor-arg name="pathImageHotel" value="orange/reblevskoe_hotel.png"/>
     </bean>
 
     <bean id="leninskiy_prospekt"  class="monopoly.monopoly_bank.logic.titledeeds.Street">
@@ -226,6 +287,11 @@
         <constructor-arg name="fullGroup" value="3"/>
         <constructor-arg name="pathImageFront" value="orange/leninsky_front.png"/>
         <constructor-arg name="pathImageBack" value="orange/leninsky_back.png"/>
+        <constructor-arg name="pathImageHome1" value="orange/leninsky_one_home.png"/>
+        <constructor-arg name="pathImageHome2" value="orange/leninsky_two_home.png"/>
+        <constructor-arg name="pathImageHome3" value="orange/leninsky_three_home.png"/>
+        <constructor-arg name="pathImageHome4" value="orange/leninsky_four_home.png"/>
+        <constructor-arg name="pathImageHotel" value="orange/leninsky_hotel.png"/>
     </bean>
 
     <bean id="kotelnicheskaya_naberezhnaya"  class="monopoly.monopoly_bank.logic.titledeeds.Street">
@@ -243,6 +309,11 @@
         <constructor-arg name="fullGroup" value="3"/>
         <constructor-arg name="pathImageFront" value="orange/kotelnichisky_front.png"/>
         <constructor-arg name="pathImageBack" value="orange/kotelnichisky_back.png"/>
+        <constructor-arg name="pathImageHome1" value="orange/kotelnichisky_one_home.png"/>
+        <constructor-arg name="pathImageHome2" value="orange/kotelnichisky_two_home.png"/>
+        <constructor-arg name="pathImageHome3" value="orange/kotelnichisky_three_home.png"/>
+        <constructor-arg name="pathImageHome4" value="orange/kotelnichisky_four_home.png"/>
+        <constructor-arg name="pathImageHotel" value="orange/kotelnichisky_hotel.png"/>
     </bean>
 
     <bean id="krasnopresnenskaya_naberezhnaya"  class="monopoly.monopoly_bank.logic.titledeeds.Street">
@@ -260,6 +331,11 @@
         <constructor-arg name="fullGroup" value="3"/>
         <constructor-arg name="pathImageFront" value="pink/krasnopresninky_front.png"/>
         <constructor-arg name="pathImageBack" value="pink/krasnopresninky_back.png"/>
+        <constructor-arg name="pathImageHome1" value="pink/krasnopresninky_one_home.png"/>
+        <constructor-arg name="pathImageHome2" value="pink/krasnopresninky_two_home.png"/>
+        <constructor-arg name="pathImageHome3" value="pink/krasnopresninky_three_home.png"/>
+        <constructor-arg name="pathImageHome4" value="pink/krasnopresninky_four_home.png"/>
+        <constructor-arg name="pathImageHotel" value="pink/krasnopresninky_hotel.png"/>
     </bean>
 
     <bean id="tvoy_dom"  class="monopoly.monopoly_bank.logic.titledeeds.Street">
@@ -277,6 +353,11 @@
         <constructor-arg name="fullGroup" value="3"/>
         <constructor-arg name="pathImageFront" value="pink/twoy_dom_front.png"/>
         <constructor-arg name="pathImageBack" value="pink/twoy_dom_back.png"/>
+        <constructor-arg name="pathImageHome1" value="pink/twoy_dom_one_home.png"/>
+        <constructor-arg name="pathImageHome2" value="pink/twoy_dom_two_home.png"/>
+        <constructor-arg name="pathImageHome3" value="pink/twoy_dom_three_home.png"/>
+        <constructor-arg name="pathImageHome4" value="pink/twoy_dom_four_home.png"/>
+        <constructor-arg name="pathImageHotel" value="pink/twoy_dom_hotel.png"/>
     </bean>
 
     <bean id="tsentralnyy_detskiy_mir"  class="monopoly.monopoly_bank.logic.titledeeds.Street">
@@ -294,6 +375,11 @@
         <constructor-arg name="fullGroup" value="3"/>
         <constructor-arg name="pathImageFront" value="pink/centralny_detsky_mir_front.png"/>
         <constructor-arg name="pathImageBack" value="pink/centralny_detsky_mir_back.png"/>
+        <constructor-arg name="pathImageHome1" value="pink/centralny_detsky_mir_one_home.png"/>
+        <constructor-arg name="pathImageHome2" value="pink/centralny_detsky_mir_two_home.png"/>
+        <constructor-arg name="pathImageHome3" value="pink/centralny_detsky_mir_three_home.png"/>
+        <constructor-arg name="pathImageHome4" value="pink/centralny_detsky_mir_four_home.png"/>
+        <constructor-arg name="pathImageHotel" value="pink/centralny_detsky_mir_hotel.png"/>
     </bean>
 
     <bean id="luzhnetskaya_naberezhnaya"  class="monopoly.monopoly_bank.logic.titledeeds.Street">
@@ -311,6 +397,11 @@
         <constructor-arg name="fullGroup" value="3"/>
         <constructor-arg name="pathImageFront" value="blue_2/lujnetsky_front.png"/>
         <constructor-arg name="pathImageBack" value="blue_2/lujnetsky_back.png"/>
+        <constructor-arg name="pathImageHome1" value="blue_2/lujnetsky_one_home.png"/>
+        <constructor-arg name="pathImageHome2" value="blue_2/lujnetsky_two_home.png"/>
+        <constructor-arg name="pathImageHome3" value="blue_2/lujnetsky_three_home.png"/>
+        <constructor-arg name="pathImageHome4" value="blue_2/lujnetsky_four_home.png"/>
+        <constructor-arg name="pathImageHotel" value="blue_2/lujnetsky_hotel.png"/>
     </bean>
 
     <bean id="leningradskiy_prospekt"  class="monopoly.monopoly_bank.logic.titledeeds.Street">
@@ -328,6 +419,11 @@
         <constructor-arg name="fullGroup" value="3"/>
         <constructor-arg name="pathImageFront" value="blue_2/leningradsky_front.png"/>
         <constructor-arg name="pathImageBack" value="blue_2/leningradsky_back.png"/>
+        <constructor-arg name="pathImageHome1" value="blue_2/leningradsky_one_home.png"/>
+        <constructor-arg name="pathImageHome2" value="blue_2/leningradsky_two_home.png"/>
+        <constructor-arg name="pathImageHome3" value="blue_2/leningradsky_three_home.png"/>
+        <constructor-arg name="pathImageHome4" value="blue_2/leningradsky_four_home.png"/>
+        <constructor-arg name="pathImageHotel" value="blue_2/leningradsky_hotel.png"/>
     </bean>
 
     <bean id="mira_prospekt"  class="monopoly.monopoly_bank.logic.titledeeds.Street">
@@ -345,6 +441,11 @@
         <constructor-arg name="fullGroup" value="3"/>
         <constructor-arg name="pathImageFront" value="blue_2/mira_front.png"/>
         <constructor-arg name="pathImageBack" value="blue_2/mira_back.png"/>
+        <constructor-arg name="pathImageHome1" value="blue_2/mira_one_home.png"/>
+        <constructor-arg name="pathImageHome2" value="blue_2/mira_two_home.png"/>
+        <constructor-arg name="pathImageHome3" value="blue_2/mira_three_home.png"/>
+        <constructor-arg name="pathImageHome4" value="blue_2/mira_four_home.png"/>
+        <constructor-arg name="pathImageHotel" value="blue_2/mira_hotel.png"/>
     </bean>
 
     <bean id="krymskiy_most"  class="monopoly.monopoly_bank.logic.titledeeds.Street">
@@ -362,6 +463,11 @@
         <constructor-arg name="fullGroup" value="2"/>
         <constructor-arg name="pathImageFront" value="brown/krimsky_front.png"/>
         <constructor-arg name="pathImageBack" value="brown/krimsky_back.png"/>
+        <constructor-arg name="pathImageHome1" value="brown/krimsky_one_home.png"/>
+        <constructor-arg name="pathImageHome2" value="brown/krimsky_two_home.png"/>
+        <constructor-arg name="pathImageHome3" value="brown/krimsky_three_home.png"/>
+        <constructor-arg name="pathImageHome4" value="brown/krimsky_four_home.png"/>
+        <constructor-arg name="pathImageHotel" value="brown/krimsky_hotel.png"/>
     </bean>
 
     <bean id="komsomolskaya_ploshchad"  class="monopoly.monopoly_bank.logic.titledeeds.Street">
@@ -379,6 +485,11 @@
         <constructor-arg name="fullGroup" value="2"/>
         <constructor-arg name="pathImageFront" value="brown/komsomolsky_front.png"/>
         <constructor-arg name="pathImageBack" value="brown/komsomolsky_back.png"/>
+        <constructor-arg name="pathImageHome1" value="brown/komsomolsky_one_home.png"/>
+        <constructor-arg name="pathImageHome2" value="brown/komsomolsky_two_home.png"/>
+        <constructor-arg name="pathImageHome3" value="brown/komsomolsky_three_home.png"/>
+        <constructor-arg name="pathImageHome4" value="brown/komsomolsky_four_home.png"/>
+        <constructor-arg name="pathImageHotel" value="brown/komsomolsky_hotel.png"/>
     </bean>
 
     <bean id="rizhskaya_zheleznaya_doroga"  class="monopoly.monopoly_bank.logic.titledeeds.TrainStation">

@@ -22,6 +22,7 @@ public class TrainStation extends TitleDeed {
         this.setFullGroup(fullGroup);
         this.setImageFront(new Image(getClass().getResourceAsStream(getPathImageFront())));
         this.setImageBack(new Image(getClass().getResourceAsStream(getPathImageBack())));
+        this.setLvlTakeRent(0);
     }
 
     public int getRentStation2() {

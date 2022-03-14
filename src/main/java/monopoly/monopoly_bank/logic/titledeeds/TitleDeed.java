@@ -1,5 +1,4 @@
 package monopoly.monopoly_bank.logic.titledeeds;
-import monopoly.monopoly_bank.*;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,6 +18,7 @@ public abstract class TitleDeed {
     private int fullGroup;
     private Image imageFront;
     private Image imageBack;
+    private int lvlTakeRent;
 
     public int getFullGroup() {
         return fullGroup;
@@ -132,20 +132,32 @@ public abstract class TitleDeed {
         return imageBack;
     }
 
-    public ImageView getImageViewFront() {
-        Image image = getImageFront();
+    public ImageView creatImageView(Image image) {
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(image.getHeight() * 0.5);
         imageView.setFitWidth(image.getWidth() * 0.5);
         return (imageView);
     }
 
-    public ImageView getImageViewBack() {
-        Image image = getImageBack();
-        ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(image.getHeight() * 0.5);
-        imageView.setFitWidth(image.getWidth() * 0.5);
-        return (imageView);
+    public int getLvlTakeRent() {
+        return lvlTakeRent;
     }
 
+    public void setLvlTakeRent(int lvlTakeRent) {
+        this.lvlTakeRent = lvlTakeRent;
+    }
+
+    public void upLvlTakeRent() {
+        if (this.lvlTakeRent < 5)
+            this.lvlTakeRent++;
+        else
+            this.lvlTakeRent = 5;
+    }
+
+    public void downLvlTakeRent() {
+        if (this.lvlTakeRent > 0)
+            this.lvlTakeRent--;
+        else
+            this.lvlTakeRent = 0;
+    }
 }

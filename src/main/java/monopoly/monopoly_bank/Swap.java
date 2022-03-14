@@ -1,23 +1,18 @@
 package monopoly.monopoly_bank;
 
-import java.io.IOException;
-import java.lang.ref.Reference;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
-import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import monopoly.monopoly_bank.logic.player.Player;
 import monopoly.monopoly_bank.logic.titledeeds.TitleDeed;
 
@@ -87,16 +82,19 @@ public class Swap {
         this.listLeft.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         this.listRight.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
+        this.moneyLeft.textProperty().addListener(new changListner(this.moneyLeft));
+        this.moneyRight.textProperty().addListener(new changListner(this.moneyRight));
+
         this.tableLeft.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, selectedLeftPlayer) -> {
             if (selectedLeftPlayer != null) {
                 this.listLeft.setItems(newListImagesView(selectedLeftPlayer));
-                this.moneyLeftPlayer.setText(selectedLeftPlayer.getMoney().get() + "");
+                this.moneyLeftPlayer.setText(String.format("%,d", selectedLeftPlayer.getMoney().get()));
             }
         });
         this.tableRight.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, selectedRightPlayer) -> {
             if (selectedRightPlayer != null) {
                 this.listRight.setItems(newListImagesView(selectedRightPlayer));
-                this.moneyRightPlayer.setText(selectedRightPlayer.getMoney().get() + "");
+                this.moneyRightPlayer.setText(String.format("%,d", selectedRightPlayer.getMoney().get()));
             }
         });
 
@@ -139,9 +137,7 @@ public class Swap {
             int money = getAndCheckIntValue(moneyText, this.info);
             if (money != -1) {
                 for (ImageView imageView : selectedImage) {
-                    TitleDeed cur = player.findTitleDeadForImageFront(imageView.getImage());
-                    if (cur == null)
-                        cur = player.findTitleDeadForImageBack(imageView.getImage());
+                    TitleDeed cur = player.findTitleDeadForImage(imageView.getImage());
                     titleDeads.add(cur);
                 }
                 return money;
@@ -154,21 +150,51 @@ public class Swap {
 
     public int getAndCheckIntValue(TextField textField, Label messageError) {
         long value = 0;
-        String str = textField.getText();
+        String str = textField.getText().replaceAll("[^0-9]", "");
         if (!str.isEmpty()) {
-            if (str.matches("\\d+")) {
-                value = Long.parseLong(str);
-                if (value < Integer.MAX_VALUE) {
-                    return (int)value;
-                }
-                else
-                    messageError.setText("Слишком большое число");
+            value = Long.parseLong(str);
+            if (value < Integer.MAX_VALUE) {
+                return (int)value;
             }
             else
-                messageError.setText("Должны быть числом");
+                messageError.setText("Слишком большое число");
         }
         else
             return (int)value;
         return -1;
+    }
+
+    private class changListner implements ChangeListener<String> {
+        private final TextField textField;
+
+        public changListner(TextField textField){
+            this.textField = textField;
+        }
+
+        @Override
+        public void changed(ObservableValue observable, String oldValue, String newValue) {
+            String tmp = newValue.replaceAll("[^0-9]", "");
+            if (tmp.isEmpty()) {
+                Platform.runLater(() -> {
+                    textField.setText("");
+                });
+            }
+            else {
+                long value = Long.parseLong(tmp);
+                String newString = String.format("%,d", value);
+                Platform.runLater(() -> {
+                    int oldPosiCaret = textField.getCaretPosition();
+                    int count = 0;
+                    for (int i = 0; i != newValue.length() && i != oldPosiCaret; i++){
+                        if (newValue.charAt(i) == '\u00a0')
+                            count++;
+                    }
+                    if (newValue.length() > oldValue.length())
+                        oldPosiCaret += count;
+                    textField.setText(newString);
+                    textField.positionCaret(oldPosiCaret);
+                });
+            }
+        }
     }
 }

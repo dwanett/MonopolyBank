@@ -10,6 +10,8 @@ public class SelectCountPlayer {
 
     private Graphics graphics;
 
+    int countPlayers;
+
     @FXML
     private ResourceBundle resources;
 
@@ -26,38 +28,36 @@ public class SelectCountPlayer {
     private Button player4;
 
     public SelectCountPlayer(Graphics graphics) {
-        this.setGraphics(graphics);
+
+        this.graphics = graphics;
+        this.countPlayers = 0;
     }
 
     @FXML
     void initialize() {
         player2.setOnAction(actionEvent -> {
-            InfoPlayers2 infoPlayers2 = new InfoPlayers2(this.getGraphics());
-            FXMLLoader fxmlLoader = new FXMLLoader(SelectCountPlayer.class.getResource("InfoPlayers2.fxml"));
-            fxmlLoader.setController(infoPlayers2);
-            graphics.newScene(fxmlLoader, actionEvent);
+            this.countPlayers = 2;
+            InfoPlayers infoPlayers = new InfoPlayers(this.graphics, this.countPlayers);
+            FXMLLoader fxmlLoader = new FXMLLoader(SelectCountPlayer.class.getResource("InfoPlayers.fxml"));
+            fxmlLoader.setController(infoPlayers);
+            graphics.newScene(fxmlLoader);
         });
 
        player3.setOnAction(actionEvent -> {
-           InfoPlayers3 infoPlayers3 = new InfoPlayers3(this.getGraphics());
-           FXMLLoader fxmlLoader = new FXMLLoader(SelectCountPlayer.class.getResource("InfoPlayers3.fxml"));
-           fxmlLoader.setController(infoPlayers3);
-           graphics.newScene(fxmlLoader, actionEvent);
+           this.countPlayers = 3;
+           InfoPlayers infoPlayers = new InfoPlayers(this.graphics, this.countPlayers);
+           FXMLLoader fxmlLoader = new FXMLLoader(SelectCountPlayer.class.getResource("InfoPlayers.fxml"));
+           fxmlLoader.setController(infoPlayers);
+           graphics.newScene(fxmlLoader);
        });
 
        player4.setOnAction(actionEvent -> {
-           InfoPlayers4 infoPlayers4 = new InfoPlayers4(this.getGraphics());
-           FXMLLoader fxmlLoader = new FXMLLoader(SelectCountPlayer.class.getResource("InfoPlayers4.fxml"));
-           fxmlLoader.setController(infoPlayers4);
-           graphics.newScene(fxmlLoader, actionEvent);
+           this.countPlayers = 4;
+           InfoPlayers infoPlayers = new InfoPlayers(this.graphics, this.countPlayers);
+           FXMLLoader fxmlLoader = new FXMLLoader(SelectCountPlayer.class.getResource("InfoPlayers.fxml"));
+           fxmlLoader.setController(infoPlayers);
+           graphics.newScene(fxmlLoader);
        });
     }
 
-    public Graphics getGraphics() {
-        return graphics;
-    }
-
-    public void setGraphics(Graphics graphics) {
-        this.graphics = graphics;
-    }
 }

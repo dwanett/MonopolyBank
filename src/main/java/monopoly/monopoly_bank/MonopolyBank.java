@@ -1,14 +1,9 @@
 package monopoly.monopoly_bank;
 
 import javafx.beans.property.ListProperty;
-import javafx.beans.property.MapProperty;
 import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.SimpleMapProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import monopoly.monopoly_bank.logic.player.GroupTitleDeed;
 import monopoly.monopoly_bank.logic.player.Player;
@@ -57,7 +52,7 @@ public class MonopolyBank {
         return playerWralks;
     }
 
-    public Player getPlayerobjWralks() {
+    public Player getPlayerObjWralks() {
         return players.get(getPlayerWralks());
     }
 
@@ -88,7 +83,7 @@ public class MonopolyBank {
     private void initializeSpringConf() {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("configSpring.xml");
         ObservableList<TitleDeed> list = FXCollections.observableArrayList(context.getBeansOfType(TitleDeed.class).values());
-        this.freeTitleDeads = new SimpleListProperty<TitleDeed>(list);
+        this.freeTitleDeads = new SimpleListProperty<>(list);
         context.close();
     }
 
@@ -157,9 +152,9 @@ public class MonopolyBank {
     }
 
     public void initImageViewsTitleDeads() {
-        this.imageViewsTitleDeads = new SimpleListProperty<ImageView>(FXCollections.observableArrayList());
+        this.imageViewsTitleDeads = new SimpleListProperty<>(FXCollections.observableArrayList());
         for (TitleDeed elem : freeTitleDeads) {
-            this.imageViewsTitleDeads.add(elem.getImageViewFront());
+            this.imageViewsTitleDeads.add(elem.creatImageView(elem.getImageFront()));
         }
     }
 }

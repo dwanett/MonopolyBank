@@ -1,9 +1,7 @@
 package monopoly.monopoly_bank;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SceneAntialiasing;
@@ -41,11 +39,11 @@ public class Graphics extends Application {
         this.primaryStage = primaryStage;
     }
 
-    public void newScene(FXMLLoader fxmlLoader, ActionEvent actionEvent) {
+    public void newScene(FXMLLoader fxmlLoader) {
         try {
             Scene scene = new Scene(fxmlLoader.load(), primaryStage.getScene().getWidth(), primaryStage.getScene().getHeight(), false, SceneAntialiasing.BALANCED);
             scene.getStylesheets().add(this.css);
-            this.primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+            this.primaryStage = (Stage)primaryStage.getScene().getWindow();
             this.primaryStage.setScene(scene);
             this.primaryStage.show();
         }
