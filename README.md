@@ -14,12 +14,14 @@ mvn install
 ```
 # Возможности
 **Выбор числа игроков**<br/>
-![](https://github.com/dwanett/cub3d/blob/master/gif/1.gif)
+![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/number.png)
 **Выбор имен игроков**<br/>
+![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/name.png)
 **Покупать активы**<br/>
+![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/rootWindow.png)
 **Покупать дома или отели**<br/>
+![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/buyHome.png)
 **Обмениваться активами**<br/>
+![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/swap.png)
 **Платить ренту выбранного актива**<br/>
-# Пример работы
-![](https://github.com/dwanett/cub3d/blob/master/gif/1.gif)
-![](https://github.com/dwanett/cub3d/blob/master/gif/2.gif)
+![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/payRent.png)
