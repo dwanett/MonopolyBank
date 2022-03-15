@@ -23,7 +23,7 @@ mvn install
 ![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/buyHome.png)<br/>
 # Обмениваться активами<br/>
 ![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/swap.png)<br/>
-# Платить ренту выбранного актива<br/>
+# Платить ренту<br/>
 ![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/payRent.png)<br/>
 # Дополнительные функции
 **1) Пополнение денег игрока**<br/>
