@@ -120,7 +120,6 @@ public class Player {
         boolean checkLvlRent = true;
 
         if (tmp != null && tmp.getGroup().contains(titleDeed)) {
-            //TitleDeed elem = tmp.getGroup().get(tmp.getGroup().indexOf(titleDeed)); //Надо убрать!
             if (!titleDeed.isMortgaged()){
                 for (TitleDeed elem : tmp.getGroup()){
                     if (elem.getLvlTakeRent() > 0) {
@@ -149,24 +148,24 @@ public class Player {
             System.err.println("Error mortgage: "+ this.getName().getValue() + " not have street" + titleDeed.getName());
     }
 
-    public void payRent(int rent) {
-        this.money.set(this.money.get() - rent);
-    }
-
     public void nextLap() {
         this.addMoney(2_000_000);
     }
 
     public void addMoney(int money) {
         long tmp = (long)this.money.get() + (long)money;
-        if (tmp < Integer.MAX_VALUE)
+        if (tmp < Integer.MAX_VALUE) {
             this.money.set((int) tmp);
+            System.out.println(this.getName().getValue() + " get " + money);
+        }
     }
 
     public boolean takeMoney(int money) {
         int tmp = this.money.get() - money;
-        if (tmp >= 0)
+        if (tmp >= 0) {
             this.money.set(tmp);
+            System.out.println(this.getName().getValue() + " gave " + money);
+        }
         else
             return (false);
         return (true);
@@ -175,28 +174,56 @@ public class Player {
     public boolean takePlayerMoney(Player target, int money) {
         if (target.takeMoney(money)) {
             this.addMoney(money);
+            System.out.println(target.getName().getValue() + " pay " + money + " " + this.getName().getValue());
             return (true);
         }
+        System.err.println("Error take player money: " + target.getName().getValue() + " has " + target.getMoney().getValue()+ "! Need " + money);
         return (false);
     }
 
-    public void takeRent(Player targetPlayer, TitleDeed titleDeed, GroupTitleDeed group) {
-        if (!titleDeed.isMortgaged()) {
-            if (group.isFull()) {
-                targetPlayer.payRent(titleDeed.getRentAllGroup());
-                System.out.println(targetPlayer.getName() + " pay rent all color group");
+    public boolean takeRent(Player targetPlayer, TitleDeed titleDeed, int numberOfSteps) {
+        GroupTitleDeed tmp = this.titleDeeds.get(titleDeed.getType());
+
+        if (!titleDeed.isMortgaged() && tmp != null) {
+            if (tmp.isFull()) {
+                if (titleDeed.getClass() == Street.class) {
+                    switch (titleDeed.getLvlTakeRent()) {
+                        case 0: return (this.takePlayerMoney(targetPlayer, titleDeed.getRentAllGroup()));
+                        case 1: return (this.takePlayerMoney(targetPlayer, ((Street) titleDeed).getRentHome1()));
+                        case 2: return (this.takePlayerMoney(targetPlayer, ((Street) titleDeed).getRentHome2()));
+                        case 3: return (this.takePlayerMoney(targetPlayer, ((Street) titleDeed).getRentHome3()));
+                        case 4: return (this.takePlayerMoney(targetPlayer, ((Street) titleDeed).getRentHome4()));
+                        case 5: return (this.takePlayerMoney(targetPlayer, ((Street) titleDeed).getRentHotel()));
+                    }
+                }
+                else if (titleDeed.getClass() == MunicipalServices.class) {
+                    return (this.takePlayerMoney(targetPlayer, titleDeed.getRentAllGroup() * numberOfSteps));
+                }
+                else {
+                    return (targetPlayer.takePlayerMoney(targetPlayer, titleDeed.getRentAllGroup()));
+                }
             }
             else {
-                targetPlayer.payRent(titleDeed.getRent());
-                System.out.println(targetPlayer.getName() + " pay rent default");
+                if (titleDeed.getClass() == TrainStation.class) {
+                    switch (titleDeed.getLvlTakeRent()) {
+                        case 0: return (this.takePlayerMoney(targetPlayer, titleDeed.getRent()));
+                        case 1: return (this.takePlayerMoney(targetPlayer, ((TrainStation) titleDeed).getRentStation2()));
+                        case 2: return (this.takePlayerMoney(targetPlayer, ((TrainStation) titleDeed).getRentStation3()));
+                    }
+                } else if (titleDeed.getClass() == MunicipalServices.class) {
+                    return (this.takePlayerMoney(targetPlayer, titleDeed.getRent() * numberOfSteps));
+                }
+                else {
+                    return (targetPlayer.takePlayerMoney(targetPlayer, titleDeed.getRent()));
+                }
             }
         }
+        return false;
     }
 
     public boolean checkDifferenceCountHomeGroupTitleDeed(GroupTitleDeed group, int newLvlRent){
         int minCountHome = 0;
         int maxCountHome = 0;
-        group.getGroup().get(0);
         if (group.getGroup().get(0).getClass() == Street.class) {
             for (TitleDeed elem : group.getGroup()) {
                 if (minCountHome > ((Street)elem).getLvlTakeRent() || minCountHome == 0)
@@ -204,7 +231,7 @@ public class Player {
                 if (maxCountHome < ((Street)elem).getLvlTakeRent() || maxCountHome == 0)
                     maxCountHome = ((Street)elem).getLvlTakeRent();
             }
-            return  (maxCountHome - newLvlRent <= 1 && newLvlRent - minCountHome <= 1);
+            return (maxCountHome - newLvlRent <= 1 && newLvlRent - minCountHome <= 1);
         }
         return false;
     }
@@ -306,6 +333,6 @@ public class Player {
 
     @Override
     public String toString(){
-        return this.getName().toString();
+        return this.getName().getValue();
     }
 }

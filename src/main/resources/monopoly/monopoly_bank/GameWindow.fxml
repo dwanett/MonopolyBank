@@ -90,6 +90,7 @@
               </items>
             </MenuButton>
             <Button mnemonicParsing="false" onAction="#lap" text="Круг" />
+            <Button mnemonicParsing="false" onAction="#payRent" text="Рента" />
             <Button mnemonicParsing="false" onAction="#swap" text="Обмен" />
          </children>
       </VBox>

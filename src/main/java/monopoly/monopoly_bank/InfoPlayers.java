@@ -81,7 +81,7 @@ public class InfoPlayers {
                 for (String name : namePlayers)
                     players.add(new Player(name, 15_000_000));
                 MonopolyBank bank = new MonopolyBank(players, 0);
-                GraphicsMonopolyBank gBank = new GraphicsMonopolyBank(bank);
+                GraphicsMonopolyBank gBank = new GraphicsMonopolyBank(bank, graphics);
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GameWindow.fxml"));
                 fxmlLoader.setController(gBank);
                 this.graphics.newScene(fxmlLoader);

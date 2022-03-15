@@ -143,7 +143,7 @@ public class MonopolyBank {
             for (Map.Entry<String, GroupTitleDeed> group : check.getTitleDeeds().entrySet()) {
                 for (TitleDeed elem : group.getValue().getGroup()) {
                     if (elem.getPosition() == curPlayer.getCurPosition()) {
-                        check.takeRent(curPlayer, elem, group.getValue());
+                        check.takeRent(curPlayer, elem, 0);
                         return;
                     }
                 }

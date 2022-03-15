@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import monopoly.monopoly_bank.logic.player.GroupTitleDeed;
 import monopoly.monopoly_bank.logic.player.Player;
@@ -76,7 +77,10 @@ public class GraphicsMonopolyBank {
     @FXML
     private Label infoUtils;
 
-    public GraphicsMonopolyBank(MonopolyBank bank) {
+    private Graphics graphics;
+
+    public GraphicsMonopolyBank(MonopolyBank bank, Graphics graphics) {
+        this.graphics = graphics;
         this.bank = bank;
         this.players = FXCollections.observableList(bank.getPlayers());
         this.freeTitleDeadsImage = new ListView<ImageView>();
@@ -253,14 +257,14 @@ public class GraphicsMonopolyBank {
         this.infoUtils.setText("");
         Player selectedPlayer = this.tablePlayers.getSelectionModel().getSelectedItem();
         if (selectedPlayer != null) {
-            for (Player target : players) {
+            for (Player target : this.players) {
                 if (target != selectedPlayer)
                     if (target.getMoney().getValue() < 100_000){
                         this.infoUtils.setText("У игрока " + target.getName().getValue() + " не хватает денег!");
                         return;
                     }
             }
-            for (Player target : players) {
+            for (Player target : this.players) {
                 if (target != selectedPlayer)
                     selectedPlayer.takePlayerMoney(target, 100_000);
             }
@@ -285,7 +289,33 @@ public class GraphicsMonopolyBank {
             stage.setTitle("Обмен");
             stage.setScene(scene);
             stage.setResizable(false);
-            stage.show();
+            stage.initOwner(this.graphics.getPrimaryStage());
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void payRent(ActionEvent event){
+        Stage stage = new Stage();
+        PayRent classSwap = new PayRent(this.bank, this.players, this.playerTitleDeadsImageMap, stage);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PayRent.fxml"));
+        fxmlLoader.setController(classSwap);
+        try {
+            Scene scene = new Scene(fxmlLoader.load(), 702, 738);
+            String css = getClass().getResource("swap.css").toExternalForm();
+            scene.getStylesheets().add(css);
+            InputStream iconStream = getClass().getResourceAsStream("logo.jpg");
+            Image image = new Image(iconStream);
+            stage.getIcons().add(image);
+            stage.setTitle("Оплаты ренты");
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.initOwner(this.graphics.getPrimaryStage());
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }
