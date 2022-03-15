@@ -13,8 +13,8 @@
 ```
 mvn install
 ```
-Создастся папка `taget`.
-Файл для запуска `trget/monopoly_bank-1.0-SNAPSHOT-shaded.jar`.
+Создастся папка `target`.
+Файл для запуска `target/monopoly_bank-1.0-SNAPSHOT-shaded.jar`.
 # Возможности
 # Выбор числа игроков<br/>
 ![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/number.png)<br/>
