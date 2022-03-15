@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="monopoly_bank" target="11" />
+      <module name="monopoly_bank" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>
