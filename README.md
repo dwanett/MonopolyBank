@@ -13,15 +13,15 @@
 mvn install
 ```
 # Возможности
-**Выбор числа игроков**<br/>
-![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/number.png)
-**Выбор имен игроков**<br/>
-![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/name.png)
-**Покупать активы**<br/>
-![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/rootWindow.png)
-**Покупать дома или отели**<br/>
-![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/buyHome.png)
-**Обмениваться активами**<br/>
-![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/swap.png)
-**Платить ренту выбранного актива**<br/>
-![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/payRent.png)
+# Выбор числа игроков<br/>
+![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/number.png)<br/>
+# Выбор имен игроков<br/>
+![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/name.png)<br/>
+# Покупать активы<br/>
+![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/rootWindow.png)<br/>
+# Покупать дома или отели<br/>
+![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/buyHome.png)<br/>
+# Обмениваться активами<br/>
+![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/swap.png)<br/>
+# Платить ренту выбранного актива<br/>
+![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/payRent.png)<br/>
