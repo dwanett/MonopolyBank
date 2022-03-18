@@ -214,7 +214,7 @@ public class Player {
                     return (this.takePlayerMoney(targetPlayer, titleDeed.getRent() * numberOfSteps));
                 }
                 else {
-                    return (targetPlayer.takePlayerMoney(targetPlayer, titleDeed.getRent()));
+                    return (this.takePlayerMoney(targetPlayer, titleDeed.getRent()));
                 }
             }
         }
