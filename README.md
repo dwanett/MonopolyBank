@@ -5,6 +5,7 @@
 Для работы программы необходимо установить `JDK 17` (https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 <br/>
 Можно запустить файл `MonopolyBank.jar` из репозитория или скомпилировать заново.<br/>
+
 **Для компиляции**<br/>
 Небходимо установить maven. Инструкция по установке (https://www.baeldung.com/install-maven-on-windows-linux-mac)
 <br/>
@@ -12,14 +13,27 @@
 ```
 mvn install
 ```
+Создастся папка `target`.
+Файл для запуска `target/monopoly_bank-1.0-SNAPSHOT-shaded.jar`.
 # Возможности
-**Выбор числа игроков**<br/>
-![](https://github.com/dwanett/cub3d/blob/master/gif/1.gif)
-**Выбор имен игроков**<br/>
-**Покупать активы**<br/>
-**Покупать дома или отели**<br/>
-**Обмениваться активами**<br/>
-**Платить ренту выбранного актива**<br/>
-# Пример работы
-![](https://github.com/dwanett/cub3d/blob/master/gif/1.gif)
-![](https://github.com/dwanett/cub3d/blob/master/gif/2.gif)
+# Выбор числа игроков<br/>
+![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/number.png)<br/>
+# Выбор имен игроков<br/>
+![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/name.png)<br/>
+# Покупать активы<br/>
+![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/rootWindow.png)<br/>
+# Покупать дома или отели<br/>
+![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/buyHome.png)<br/>
+# Обмениваться активами<br/>
+![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/swap.png)<br/>
+# Платить ренту<br/>
+![](https://github.com/dwanett/MonopolyBank/blob/master/forreadme/payRent.png)<br/>
+# Дополнительные функции
+**1) Пополнение денег игрока**<br/>
+**2) Снятие денег с игрока**<br/>
+**3) Покупка актива за введенную сумму**<br/>
+**4) Меню "Шанс"**<br/>
+На данный момент имеет действие для одной карточки (Получить с каждого игрока по 100_000).<br/>
+**5) Кнопака "Ход"**<br/>
+На данный момент недоработана. При введенном количестве очков может купить улицу, на которую указывает ваша текущая позиция + выпавшее количество очков.
+А также взимать ренту с игрока, если улица принадлежит другому игроку. (Возможно неопределенное поведение!!!)<br/>
